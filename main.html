@@ -1,40 +1,79 @@
 <!DOCTYPE html>
 <html lang="fr-FR">
 
-<head>
-    <meta charset="UTF-8">
-    <meta author="Mélissa St-Jean & Alexandre Tardif">
-    <meta http-equiv="Content-Type" content="text/html; charset= ISO-8859-1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="UTF-8">
+        <meta author="Mélissa St-Jean & Alexandre Tardif">
+        <meta http-equiv="Content-Type" content="text/html; charset= ISO-8859-1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Chez mel</title>
+        <title>Chez mel</title>
 
-    <!---STYLES BUNDLE -------------------------------------------------------------------------->
+        <!---STYLES BUNDLE -------------------------------------------------------------------------->
 
-    <!-- Tooltips styles -->
-    <link rel="stylesheet" href="css/tooltip.css">
+        <link rel="stylesheet" href="css/Cuisto.css">
 
-    <!-- Confirm dialog styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-    <!-- Font awesome styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Tooltips styles -->
+        <link rel="stylesheet" href="css/tooltip.css">
 
-    <!-- News manager main layout styles -->
-    <link rel="stylesheet" href="css/NewsManagerLayout.css">
+        <!-- Confirm dialog styles -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+        <!-- Font awesome styles -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="icon" href="favicon.ico">
+        <link rel="icon" href="favicon.ico">
 
-    <!---Page backgroung News------------------------------------------------------------------>
-    <style>
-        body {
-            background: url(images/bg.png) no-repeat center center fixed;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
+        <!---Page backgroung Cuistot------------------------------------------------------------------>
+        <style>
+            body {
+                background: url(images/bg.png) no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <img src="favicon.ico" style="height: 80px; margin-right:8px;float:left;">
+        </div>
+        
+        <div id="Panel">
+            <div id="buttonLogin">
+                <button id="UserRegister">
+                    S'inscrire
+                </button>
+                
+                <button id="UserLogin">
+                    Se connecter
+                </button>
+            </div>
+
+        </div>
+
+        <!--Pop-up connection -->
+        <div id="dialog-loginForm" title="Connexion" class="dialog">
+            <form id="loginForm" class="form-group">
+                <input type="text" id="loginEmail" placeholder="Courriel" class="form-control" />
+                <input type="password" id="loginPassword" placeholder="Mot de passe" class="form-control" />
+                <br>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="remember-me">
+                    <label class="form-check-label" for="remember-me">Se souvenir de moi</label>
+                </div>
+            </form>
+        </div>
+    </body>
+
+    <script>
+        
+
+
+
+        function initUI(){
+            $("#dialog-loginForm")
         }
-    </style>
-</head>
 
-<body>
-   
+    </script>
+</html>

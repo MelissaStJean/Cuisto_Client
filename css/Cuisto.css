@@ -1,0 +1,10 @@
+#Panel{
+    background-color: #FFB588;
+    width: 50vw;
+    height: 80vh;
+    margin-left: 25vw;
+}
+
+#buttonLogin{
+    text-align: right;
+}
