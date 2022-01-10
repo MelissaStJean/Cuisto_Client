@@ -7,13 +7,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset= ISO-8859-1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Chez mel</title>
+        <title>Chez Mel</title>
 
         <!---STYLES BUNDLE -------------------------------------------------------------------------->
-
         <link rel="stylesheet" href="css/Cuisto.css">
-
-        <!-- Tooltips styles -->
         <link rel="stylesheet" href="css/tooltip.css">
 
         <!-- Confirm dialog styles -->
@@ -24,32 +21,41 @@
         <link rel="icon" href="favicon.ico">
 
         <!---Page backgroung Cuistot------------------------------------------------------------------>
-        <style>
-            body {
-                background: url(images/bg.png) no-repeat center center fixed;
-                -webkit-background-size: cover;
-                -moz-background-size: cover;
-                -o-background-size: cover;
-                background-size: cover;
-            }
-        </style>
     </head>
     <body>
         <div>
-            <img src="favicon.ico" style="height: 80px; margin-right:8px;float:left;">
-        </div>
-        
-        <div id="Panel">
-            <div id="buttonLogin">
-                <button id="UserRegister">
-                    S'inscrire
-                </button>
-                
-                <button id="UserLogin">
-                    Se connecter
-                </button>
+            <img src="images/Logo.png" style="height: 200px; margin-right:8px;float:left;">
+            <div class="round">
+                <div class="circle_text">Entrées</div>
             </div>
-
+            <div class="round">
+                <div class="circle_text">Les petites bouchées</div>
+            </div>
+            <div class="round">
+                <div class="circle_text">Plats principaux</div>
+            </div>
+            <div class="round">
+                <div class="circle_text">Drink / cocktail</div>
+            </div>
+            <div class="round">
+                <div class="circle_text">Dent sucrée</div>
+            </div>
+            <div class="round">
+                <div class="circle_text">Entre les repas</div>
+            </div>
+        </div>
+        <br><br>
+        <div id="Panel">
+            <Text id="TextAccount">Mon compte</text>
+            <br>        
+            <a href="./main.html">S'inscrire</a> |
+            <a href="https://example.com">Se connecter</a>
+            <br>
+            <Text id="TextAccount">Mes outils</text>
+            <br>
+            <Text id="TextAccount">Mon frigo</text>
+            <br>
+            <Text id="TextAccount">Aide-moi</text>
         </div>
 
         <!--Pop-up connection -->
@@ -67,12 +73,8 @@
     </body>
 
     <script>
-        
-
-
-
         function initUI(){
-            $("#dialog-loginForm")
+            $("#dialog-loginForm").hide();
         }
 
     </script>
