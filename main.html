@@ -13,69 +13,136 @@
         <link rel="stylesheet" href="css/Cuisto.css">
         <link rel="stylesheet" href="css/tooltip.css">
 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
         <!-- Confirm dialog styles -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
         <!-- Font awesome styles -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <link rel="icon" href="favicon.ico">
-
-        <!---Page backgroung Cuistot------------------------------------------------------------------>
     </head>
     <body>
         <div>
-            <img src="images/Logo.png" style="height: 200px; margin-right:8px;float:left;">
-            <div class="round">
+            <img onclick='changePage("main")' src="images/Logo.png" style="height:200px;margin-left:12px; margin-right:5px;float:left;">
+            <div class="circle">
                 <div class="circle_text">Entrées</div>
             </div>
-            <div class="round">
+            <div class="circle">
                 <div class="circle_text">Les petites bouchées</div>
             </div>
-            <div class="round">
+            <div class="circle">
                 <div class="circle_text">Plats principaux</div>
             </div>
-            <div class="round">
+            <div class="circle">
                 <div class="circle_text">Drink / cocktail</div>
             </div>
-            <div class="round">
+            <div class="circle">
                 <div class="circle_text">Dent sucrée</div>
             </div>
-            <div class="round">
+            <div class="circle">
                 <div class="circle_text">Entre les repas</div>
             </div>
         </div>
-        <br><br>
+        
+        <div>
+            <span id="glyph" class="gicon glyphicon glyphicon-filter"></span>
+            <span id="glyph" onclick='showCategory("category")' class="gicon glyphicon glyphicon-chevron-down"></span>
+            <input  style="font-size: 30px;"type="search" id="search" placeholder="Recherchez une recette" name="search">
+            <span style="font-size: 45px;" class="glyphicon glyphicon-search"></span>
+        </div>
         <div id="Panel">
             <Text id="TextAccount">Mon compte</text>
-            <br>        
-            <a href="./main.html">S'inscrire</a> |
-            <a href="https://example.com">Se connecter</a>
-            <br>
+            <div class="open-btn">
+                <button class="button" onclick='openForm("popupLoginForm")'><strong>Se connecter</strong></button> <h3>ou</h3>
+                <button class="button" onclick='openForm("popupCreateForm")'><strong>S'inscrire</strong></button>
+            </div>
             <Text id="TextAccount">Mes outils</text>
             <br>
-            <Text id="TextAccount">Mon frigo</text>
             <br>
-            <Text id="TextAccount">Aide-moi</text>
+            <Text id="TextAccount">Mon frigo</text>
+            <h5 style="margin-left:8px;">C'est un outil permettant d'éviter le gaspillage des aliments.</h5>
+            <button type="button" class="button" onclick='changePage("frigo")'><strong>Accéder à mon frigo</strong></button>
+            <br>
+            <br>
+            <text id="TextAccount">Aide-moi</text>
+            <h5 style="margin-left:8px;">C'est un outil qui aide à répondre à la fameuse question "On mange quoi?"</h5>
+            <button type="button" class="button" onclick='changePage("AideMoi")'><strong>Aide-moi</strong></button>
         </div>
 
-        <!--Pop-up connection -->
-        <div id="dialog-loginForm" title="Connexion" class="dialog">
-            <form id="loginForm" class="form-group">
-                <input type="text" id="loginEmail" placeholder="Courriel" class="form-control" />
-                <input type="password" id="loginPassword" placeholder="Mot de passe" class="form-control" />
-                <br>
+        <!--Pop-up connection -->    
+        <div class="login-popup">
+            <div class="form-popup" id="popupLoginForm">
+              <form action="/action_page.php" class="form-container">
+                <div>
+                    <button id="cancelButton" type="button" class="btn cancel" onclick='closeForm("popupLoginForm")'>X</button>
+                </div>
+                <h2 style="margin-top: 5px">Connectez-vous</h2>
+                <label for="email">
+                <strong>E-mail</strong>
+                </label>
+                <input type="text" id="email" placeholder="Votre Email" name="email" required>
+                <label for="psw">
+                <strong>Mot de passe</strong>
+                </label>
+                <input type="password" id="psw" placeholder="Votre Mot de passe" name="psw" required>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="remember-me">
                     <label class="form-check-label" for="remember-me">Se souvenir de moi</label>
                 </div>
-            </form>
+                <br>
+                <button type="submit" class="btn">Connecter</button>
+              </form>
+            </div>
+        </div>
+
+        <!--Pop-up création compte-->
+        <div class="create-popup">
+            <div class="form-popup" id="popupCreateForm">
+              <form action="/action_page.php" class="form-container">
+                <button id="cancelButton" type="button" class="btn cancel" onclick='closeForm("popupCreateForm")'>X</button>
+                <h2 style="margin-top: 5px">Créer un compte</h2>
+                <label for="name"><strong>Nom</strong></label>
+                <label for="email"><strong>E-mail</strong></label>
+                <input type="text" id="email" placeholder="Votre Email" name="email" required>
+                <label for="psw"><strong>Mot de passe</strong></label>
+                <input type="password" id="createAccPassword" placeholder="Votre Mot de passe" name="psw" required>
+
+                <div style="vertical-align:top; text-align: center ">
+                    <div class='NewsDownloader' id='avatar' defaultImageSrc='images/No_Avatar.png'></div>
+                    <label>(cliquez pour changer l'avatar)</label>
+                </div>
+                <br>
+                <button type="submit" class="btn">Connecter</button>
+              </form>
+            </div>
+        </div>
+        <!--Les catégories-->
+        <div class="form-popup-test" id="category">
+            <div style="margin-left: 10vw;">
+                <p>5 ingrédients et –</p>
+                <p>Rapide & efficace</p>
+                <p>Les classiques </p>
+                <p>Prêt à congeler</p>
+                <p>Sans cuisson</p>
+            </div>
         </div>
     </body>
 
     <script>
-        function initUI(){
-            $("#dialog-loginForm").hide();
+        function openForm(id) {
+            document.getElementById(id).style.display="block";
+        }
+      
+        function closeForm(id) {
+            document.getElementById(id).style.display="none";
         }
 
+        function showCategory(id){
+            document.getElementById(id).style.display="block";
+        }
+        function changePage(name){
+            document.location.href = name + ".html";
+        }
     </script>
 </html>

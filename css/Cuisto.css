@@ -1,34 +1,128 @@
+:root{
+    --col-salmon: #ffae82;
+    --col-lightSalmon: #ffceaf;
+}
+
 #Panel{
-    background-color: #ffceaf;
+    position: fixed;
+    background-color: var(--col-lightSalmon);
     width: 92vw;
     height: 60vh;
     margin-left: 2vw;
+    margin-top: 2vh;
 }
 
 #TextAccount{
     font-size: 2em;
+    padding-left: 10px;
 }
 
-.round
-{
-    display: inline-block;
-    background-image:-webkit-linear-gradient(top, #FFB588 0%, #ff8c4e 100%);
-    background-image: linear-gradient(to bottom, #FFB588 0%, #ff8c4e 100%);
+.circle{
+    background-image:-webkit-linear-gradient(top, var(--col-lightSalmon) 0%, var(--col-salmon) 100%);
+    background-image: linear-gradient(to bottom, var(--col-lightSalmon) 0%, var(--col-salmon) 100%);
     margin: 10px;
     color: rgb(56, 55, 55);
-    background-color: #69A3B9;
-    width: 180px;
-    height: 175px;
+    width: 10vw;
+    height: 20vh;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
     text-align: center;
     font-size: 30px;
     text-align-last: center;
-  
+    font-family: 'Roboto', Arial, sans-serif;
+    float: left; /*display: inline-block;*/
 }
 
-.circle_text{
+.circle_text {
     display:block;
     padding-top:70px;
-   }
+}
+
+/* Fixez le bouton sur le côté gauche de la page the button on the left side of the page */
+.open-btn {
+    display: flex;
+    justify-content: left;;
+}
+/* Stylez et fixez le bouton sur la page */
+.button {
+    background-color: #ff9a5f;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.8;
+    margin: 20px;
+}
+/* Positionnez la forme Popup */
+.login-popup,.create-popup {
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+/* Masquez la forme Popup */
+.form-popup {
+    display: none;
+    position: fixed;
+    left: 45%;
+    top:5%;
+    transform: translate(-45%,5%);
+    border: 2px solid rgb(255, 175, 121);
+    z-index: 9;
+}
+/* Styles pour le conteneur de la forme */
+.form-container {
+    max-width: 380px;
+    padding: 20px;
+    background-color: rgb(255, 212, 177);
+}
+/* Largeur complète pour les champs de saisie */
+.form-container input[type=text], .form-container input[type=password] {
+    width: 90%;
+    padding: 10px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: rgb(255, 230, 210);
+}
+/* Quand les entrées sont concentrées, faites quelque chose */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+/* Stylez le bouton de connexion */
+.form-container .btn {
+    background-color: #fda24c;
+    padding: 12px 10px;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    margin-bottom:10px;
+    opacity: 0.8;
+}
+/* Planez les effets pour les boutons */
+.form-container .btn:hover, .open-button:hover {
+    opacity: 1;
+}
+#cancelButton{
+    margin-left: 17vw;
+    width: 1.5vw;
+    height: 1vh;
+    line-height: 1px;
+}
+#glyph{
+    font-size: 45px;
+    margin-right: 31.3vw;
+    margin-left: 2vw;
+}
+
+.form-popup-test {
+    position: fixed;
+    left: 2vw;
+    top: 28vh;
+    background-color: rgba(255, 212, 177, 0.781);
+    width: 92vw;
+    height: 30vh;
+    text-align: justify;
+    font-size: x-large;
+    margin-top: 3vh;
+}
