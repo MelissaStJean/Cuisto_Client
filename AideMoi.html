@@ -8,8 +8,9 @@
 
     <!---STYLES BUNDLE -------------------------------------------------------------------------->
     <link rel="stylesheet" href="css/Cuisto.css">
-    <link rel="stylesheet" href="css/tooltip.css">
 
+    <!-- Use bootstrap icon -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Confirm dialog styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
     <!-- Font awesome styles -->
@@ -17,28 +18,38 @@
 
     <link rel="icon" href="favicon.ico">
 </head>
-<body>
-    <div>
-        <img onclick='changePage("main")' src="images/Logo.png" style="height:200px;margin-left:12px; margin-right:5px;float:left;">
-        <div class="circle">
-            <div class="circle_text">Entrées</div>
-        </div>
-        <div class="circle">
-            <div class="circle_text">Les petites bouchées</div>
-        </div>
-        <div class="circle">
-            <div class="circle_text">Plats principaux</div>
-        </div>
-        <div class="circle">
-            <div class="circle_text">Drink / cocktail</div>
-        </div>
-        <div class="circle">
-            <div class="circle_text">Dent sucrée</div>
-        </div>
-        <div class="circle">
-            <div class="circle_text">Entre les repas</div>
-        </div>
-    </div>
+<body>  
+    <div id="Panel">
+        <p>Choisissez le type de recette</p>
+        <div class="col-xl-10 pb-5">
+            <input class="checkbox-budget" type="radio" name="typeRecipe" id="entries" checked>
+            <label class="for-checkbox-budget" for="entries">
+                <span data-hover="Entrées">Entrées</span>
+            </label>
+            <input class="checkbox-budget" type="radio" name="typeRecipe" id="smallBites">
+            <label class="for-checkbox-budget" for="smallBites">	
+                <span data-hover="Les petites bouchées">Les petites bouchées</span>	
+            </label>
+            <input class="checkbox-budget" type="radio" name="typeRecipe" id="mainCourse">
+            <label class="for-checkbox-budget" for="mainCourse">	
+                <span data-hover="Plats principaux">Plats principaux</span>	
+            </label>
+            <input class="checkbox-budget" type="radio" name="typeRecipe" id="drinkCocktail">
+            <label class="for-checkbox-budget" for="drinkCocktail">	
+                <span data-hover="Drink & cocktail">Drink & cocktail</span>	
+            </label>
+            <input class="checkbox-budget" type="radio" name="typeRecipe" id="sweetTooth">
+            <label class="for-checkbox-budget" for="sweetTooth">	
+                <span data-hover="Dent sucrée">Dent sucrée</span>	
+            </label>
+            <input class="checkbox-budget" type="radio" name="typeRecipe" id="snacks">
+            <label class="for-checkbox-budget" for="snacks">	
+                <span data-hover="Entre les repas">Entre les repas</span>	
+            </label>
+        </div>  
+        <p>Choisissez des filtres</p>
+        <button type="button" class="button" onclick='changePage("AideMoi")' style="margin-left: 45%"><strong>Trouve une recette</strong></button>
+    </div>			
 </body>
 <script>
 

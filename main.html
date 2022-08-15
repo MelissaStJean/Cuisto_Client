@@ -11,87 +11,88 @@
 
         <!---STYLES BUNDLE -------------------------------------------------------------------------->
         <link rel="stylesheet" href="css/Cuisto.css">
-        <link rel="stylesheet" href="css/tooltip.css">
 
+        <!-- Use bootstrap icon -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
         <!-- Confirm dialog styles -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
         <!-- Font awesome styles -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Script Jquery -->
+        <script
+        src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+
+        <script src="js/WebAPIRequest.js"></script>
 
         <link rel="icon" href="favicon.ico">
     </head>
     <body>
-        <div>
-            <img onclick='changePage("main")' src="images/Logo.png" style="height:200px;margin-left:12px; margin-right:5px;float:left;">
-            <div class="circle">
-                <div class="circle_text">Entrées</div>
-            </div>
-            <div class="circle">
-                <div class="circle_text">Les petites bouchées</div>
-            </div>
-            <div class="circle">
-                <div class="circle_text">Plats principaux</div>
-            </div>
-            <div class="circle">
-                <div class="circle_text">Drink / cocktail</div>
-            </div>
-            <div class="circle">
-                <div class="circle_text">Dent sucrée</div>
-            </div>
-            <div class="circle">
-                <div class="circle_text">Entre les repas</div>
-            </div>
-        </div>
-        
-        <div>
-            <span id="glyph" class="gicon glyphicon glyphicon-filter"></span>
-            <span id="glyph" onclick='showCategory("category")' class="gicon glyphicon glyphicon-chevron-down"></span>
-            <input  style="font-size: 30px;"type="search" id="search" placeholder="Recherchez une recette" name="search">
-            <span style="font-size: 45px;" class="glyphicon glyphicon-search"></span>
+        <div class="h_iframe">
+            <iframe src="header.html"></iframe>
         </div>
         <div id="Panel">
-            <Text id="TextAccount">Mon compte</text>
+            <text id="TextAccount">Mon compte</text>
+            <div style="margin-left:10px;text-align:left;">
+                <div id="avatarContainer"></div>
+                <h4 id="username">non connecté</h4>
+            </div>
+            <div class="dash"></div>
             <div class="open-btn">
-                <button class="button" onclick='openForm("popupLoginForm")'><strong>Se connecter</strong></button> <h3>ou</h3>
+                <button class="button" onclick='openForm("dialog-loginForm")'><strong>Se connecter</strong></button> <h3>ou</h3>
                 <button class="button" onclick='openForm("popupCreateForm")'><strong>S'inscrire</strong></button>
             </div>
-            <Text id="TextAccount">Mes outils</text>
+            <text id="TextAccount">Mes outils</text>
+            <div class="dash"></div>
             <br>
             <br>
-            <Text id="TextAccount">Mon frigo</text>
-            <h5 style="margin-left:8px;">C'est un outil permettant d'éviter le gaspillage des aliments.</h5>
-            <button type="button" class="button" onclick='changePage("frigo")'><strong>Accéder à mon frigo</strong></button>
-            <br>
-            <br>
-            <text id="TextAccount">Aide-moi</text>
-            <h5 style="margin-left:8px;">C'est un outil qui aide à répondre à la fameuse question "On mange quoi?"</h5>
-            <button type="button" class="button" onclick='changePage("AideMoi")'><strong>Aide-moi</strong></button>
+            <div style="display: inline-block;">
+                <table>
+                    <tr>
+                        <td>
+                            <div style="width: 400px;">
+                                <text id="TextAccount">Mon frigo</text>
+                                <h5 style="margin-left:1vw; margin-right: 20px; text-align: justify;">C'est un outil permettant d'éviter le gaspillage alimentaire. Le but est simple : Sélectionnez les aliments et trouvez une recette.</h5>
+                                <button type="button" class="button" onclick='changePage("frigo")'><strong>Accéder à mon frigo</strong></button> 
+                                <br>
+                                <br>
+                            </div> 
+                        </td>
+                        <td>
+                            <div style="width: 400px;">
+                                <text id="TextAccount">Aide-moi</text>
+                                <h5 style="margin-left:1vw; text-align: justify;">C'est un outil qui aide à répondre à la fameuse question "On mange quoi?"</h5>
+                                <button type="button" class="button" onclick='changePage("AideMoi")'><strong>Aide-moi</strong></button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
         <!--Pop-up connection -->    
         <div class="login-popup">
-            <div class="form-popup" id="popupLoginForm">
-              <form action="/action_page.php" class="form-container">
+            <div class="form-popup" id="dialog-loginForm" title="Connexion">
+              <form class="form-container">
                 <div>
-                    <button id="cancelButton" type="button" class="btn cancel" onclick='closeForm("popupLoginForm")'>X</button>
+                    <button id="cancelButton" type="button" class="btn cancel" onclick='closeForm("dialog-loginForm")'>X</button>
                 </div>
                 <h2 style="margin-top: 5px">Connectez-vous</h2>
                 <label for="email">
                 <strong>E-mail</strong>
                 </label>
-                <input type="text" id="email" placeholder="Votre Email" name="email" required>
+                <input type="text" id="loginEmail" placeholder="Votre Email" name="email" required>
                 <label for="psw">
                 <strong>Mot de passe</strong>
                 </label>
-                <input type="password" id="psw" placeholder="Votre Mot de passe" name="psw" required>
-                <div class="form-group form-check">
+                <input type="password" id="loginPsw" placeholder="Votre Mot de passe" name="psw" required>
+                <!--<div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="remember-me">
                     <label class="form-check-label" for="remember-me">Se souvenir de moi</label>
-                </div>
+                </div>-->
                 <br>
-                <button type="submit" class="btn">Connecter</button>
+                <button onclick="Login()" type="submit" class="btn">Connecter</button>
               </form>
             </div>
         </div>
@@ -103,13 +104,14 @@
                 <button id="cancelButton" type="button" class="btn cancel" onclick='closeForm("popupCreateForm")'>X</button>
                 <h2 style="margin-top: 5px">Créer un compte</h2>
                 <label for="name"><strong>Nom</strong></label>
+                <input type="text" id="createUsername" placeholder="Votre nom"  required>
                 <label for="email"><strong>E-mail</strong></label>
-                <input type="text" id="email" placeholder="Votre Email" name="email" required>
+                <input type="text" id="createEmail" placeholder="Votre email" required>
                 <label for="psw"><strong>Mot de passe</strong></label>
-                <input type="password" id="createAccPassword" placeholder="Votre Mot de passe" name="psw" required>
+                <input type="password" id="createPassword" placeholder="Votre mot de passe" required>
 
                 <div style="vertical-align:top; text-align: center ">
-                    <div class='NewsDownloader' id='avatar' defaultImageSrc='images/No_Avatar.png'></div>
+                    <div class='NewsDownloader' id='avatar' defaultImageSrc='./../images/No_Avatar.png'></div>
                     <label>(cliquez pour changer l'avatar)</label>
                 </div>
                 <br>
@@ -117,8 +119,8 @@
               </form>
             </div>
         </div>
-        <!--Les catégories-->
-        <div class="form-popup-test" id="category">
+        <!--Les catégories
+        <div class="blocCategory" id="category">
             <div style="margin-left: 10vw;">
                 <p>5 ingrédients et –</p>
                 <p>Rapide & efficace</p>
@@ -126,7 +128,7 @@
                 <p>Prêt à congeler</p>
                 <p>Sans cuisson</p>
             </div>
-        </div>
+        </div>-->
     </body>
 
     <script>
@@ -143,6 +145,45 @@
         }
         function changePage(name){
             document.location.href = name + ".html";
+        }
+
+        function Login(){
+            webAPI_login($("#loginEmail").val(),$("#loginPsw").val(),updateUI(),failLogin());
+        }
+        function failLogin() {
+            console.log("Login failed")
+            Alert("Connexion échouée");
+            connected = false;
+            unsetUsername();
+            updateUI();
+        }
+
+        function Alert(message) {
+            $.confirm({
+                title: message,
+                content: '',
+                buttons: {
+                    fermer: function () { }
+                }
+            });
+        }
+
+        function unsetUsername() {
+            $("#username").html("<span style='color:white'>non connecté</span>");
+        }
+
+        function setUsername(username) {
+            $("#username").html("<span style='color:white;'>" + username + "</span>");
+        }
+
+        function updateUI() {
+            console.log("Update d'UI")
+            let username = "";
+            if (retrieveLoggedUser() != null) {
+                username = retrieveLoggedUser().Name;
+                connected = true;
+            }
+            setUsername(username);
         }
     </script>
 </html>

@@ -9,8 +9,9 @@
 
     <!---STYLES BUNDLE -------------------------------------------------------------------------->
     <link rel="stylesheet" href="css/Cuisto.css">
-    <link rel="stylesheet" href="css/tooltip.css">
 
+    <!-- Use bootstrap icon -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Confirm dialog styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
     <!-- Font awesome styles -->
@@ -19,26 +20,8 @@
     <link rel="icon" href="favicon.ico">
 </head>
 <body>
-    <div>
-        <img onclick='changePage("main")' src="images/Logo.png" style="height:200px;margin-left:12px; margin-right:5px;float:left;">
-        <div class="circle">
-            <div class="circle_text">Entrées</div>
-        </div>
-        <div class="circle">
-            <div class="circle_text">Les petites bouchées</div>
-        </div>
-        <div class="circle">
-            <div class="circle_text">Plats principaux</div>
-        </div>
-        <div class="circle">
-            <div class="circle_text">Drink / cocktail</div>
-        </div>
-        <div class="circle">
-            <div class="circle_text">Dent sucrée</div>
-        </div>
-        <div class="circle">
-            <div class="circle_text">Entre les repas</div>
-        </div>
+    <div id="Panel">
+        <button type="button" class="button" onclick='changePage("AideMoi")'><strong>Trouve une recette</strong></button>
     </div>
 </body>
 <script>

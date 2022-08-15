@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+    <html lang="fr-FR">
+    <head>
+        <meta charset="UTF-8">
+        <meta author="Mélissa St-Jean & Alexandre Tardif">
+        <meta http-equiv="Content-Type" content="text/html; charset= ISO-8859-1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!---STYLES BUNDLE -------------------------------------------------------------------------->
+        <link rel="stylesheet" href="css/Cuisto.css">
+        <!-- Use bootstrap icon -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- Confirm dialog styles -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    </head>
+    <body>
+        <div>
+            <img onclick='changePage("main")' src="images/Logo.png" style="height:200px;margin-left:12px; margin-right:5px;float:left;">
+            <div class="circle">
+                <div class="circle_text">Entrées</div>
+            </div>
+            <div class="circle">
+                <div class="circle_text">Les petites bouchées</div>
+            </div>
+            <div class="circle">
+                <div class="circle_text">Plats principaux</div>
+            </div>
+            <div class="circle">
+                <div class="circle_text">Drink / cocktail</div>
+            </div>
+            <div class="circle">
+                <div class="circle_text">Dent sucrée</div>
+            </div>
+            <div class="circle">
+                <div class="circle_text">Entre les repas</div>
+            </div>
+        </div>
+        <div>
+            <span id="glyph" class="gicon glyphicon glyphicon-filter"></span>
+            <span id="glyph" onclick='showCategory("category")' class="gicon glyphicon glyphicon-chevron-down"></span>
+            <input style="font-size: 30px;" type="search" id="search" placeholder="Recherchez une recette" name="search">
+            <span style="font-size: 45px;" class="glyphicon glyphicon-search"></span>
+        </div>
+    </body>
+</html>
