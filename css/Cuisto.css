@@ -1,23 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=devanagari,latin-ext');
 
 :root{
-    --col-salmon: #ffae82;
-    --col-lightSalmon: #ffceaf;
+    --col-salmon: #c5c1bf;
+    --col-lightSalmon: #cfc9c5;
     --grey: #535353;
-	--dark-light: #ffae82;
-	--red: #fa9b64;
-	--yellow: #ffae82;
-}
-
-/* Panneau d'affichage du compte*/
-#Panel{
-    position: fixed;
-    background-color: var(--col-lightSalmon);
-    width: 100%;
-    height: 60vh;
-    margin-left: 2vw;
-    margin-right: 2vw;
-    margin-top: 2vh;
+	--light-grey: #afaeae;
+	--red: #ff7648;
+	--yellow: #2c2927;
 }
 
 #TextAccount{
@@ -31,9 +20,8 @@
     background-image: linear-gradient(to bottom, var(--col-lightSalmon) 0%, var(--col-salmon) 100%);
     margin-left: 2vw;
     margin-top: 2vh;
-    color: var(--grey);
     width: 10vw;
-    height: 20vh;
+    height: 60vh;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
@@ -45,14 +33,15 @@
 }
 
 .circle:hover{
-    background-image:-webkit-linear-gradient(top, var(--col-lightSalmon) 50%, rgb(253, 170, 101) 100%);
-    background-image: linear-gradient(to bottom, var(--col-lightSalmon) 50%, rgb(255, 208, 154) 100%);
+    background-image:-webkit-linear-gradient(top, var(--col-lightSalmon) 50%, var(--col-salmon) 100%);
+    background-image: linear-gradient(to bottom, var(--col-lightSalmon) 50%, var(--col-salmon) 100%);
 }
 
 .circle_text {
     display: inline-block;
-    padding-top: 6vh;
+    padding-top: 15vh;
 }
+
 /*La ligne en dessous de account*/
 .dash{
     border: 1px solid rgb(0, 0, 0);
@@ -60,20 +49,23 @@
     height: 0px;
     margin-left: 1vw;
 }
+
 /* Fixez le bouton sur le côté gauche de la page */
 .open-btn {
     display: flex;
-    justify-content: left;;
+    justify-content: left;
 }
+
 /* Stylez et fixez le bouton sur la page */
 .button {
-    background-color: #ff9a5f;
+    background-color: var(--grey);
     padding: 12px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     opacity: 0.8;
     margin: 20px;
+    color:var(--col-lightSalmon)
 }
 /* Positionnez la forme Popup */
 .login-popup,.create-popup {
@@ -88,14 +80,14 @@
     left: 45%;
     top:5%;
     transform: translate(-45%,5%);
-    border: 2px solid rgb(255, 175, 121);
+    border: 2px solid rgb(132, 112, 99);
     z-index: 9;
 }
 /* Styles pour le conteneur de la forme */
 .form-container {
     max-width: 380px;
     padding: 20px;
-    background-color: rgb(255, 212, 177);
+    background-color: rgb(155, 93, 43);
 }
 /* Largeur complète pour les champs de saisie */
 .form-container input[type=text], .form-container input[type=password] {
@@ -112,7 +104,7 @@
 }
 /* Styler le bouton de connexion */
 .form-container .btn {
-    background-color: #fda24c;
+    background-color: #beb3a9;
     padding: 12px 10px;
     border: none;
     cursor: pointer;
@@ -138,18 +130,6 @@
     margin-left: 2vw;
 }
 
-.blocCategory {
-    position: fixed;
-    left: 2vw;
-    top: 28vh;
-    background-color: rgba(255, 212, 177, 0.781);
-    width: 92vw;
-    height: 30vh;
-    text-align: justify;
-    font-size: x-large;
-    margin-top: 3vh;
-}
-
 [type="checkbox"]:checked,
 [type="checkbox"]:not(:checked),
 [type="radio"]:checked,
@@ -160,99 +140,21 @@
 	height: 0;
 	visibility: hidden;
 }
-.checkbox:checked + label, .checkbox:not(:checked) + label{
-	position: relative;
-	width: 50px;
-	display: inline-block;
-	text-align: center;
-	margin: 17px 0;
-	margin-top: 100px;
-	height: 6px;
-	border-radius: 4px;
-	background-image: linear-gradient(298deg, var(--red), var(--yellow));
-	z-index: 100 !important;
-}
-.checkbox:checked + label:before, .checkbox:not(:checked) + label:before {
-	position: absolute;
-	font-family: 'unicons';
-	cursor: pointer;
-	top: -17px;
-	z-index: 2;
-	font-size: 20px;
-	line-height: 40px;
-	text-align: center;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	-webkit-transition: all 300ms linear;
-	transition: all 300ms linear; 
-}
 
-.checkbox-budget:checked + label, .checkbox-budget:not(:checked) + label{
-	position: relative;
-	display: inline-block;
-	padding: 0;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	width: 260px;
-	font-size: 30px;
-	line-height: 50px;
-	font-weight: 700;
-	margin-left: 5px;
-	margin-right: 5px;
-	margin-bottom: 10px;
-	text-align: center;
-	border-radius: 4px;
-	overflow: hidden;
-	cursor: pointer;
-	text-transform: uppercase;
-	-webkit-transition: all 300ms linear;
-	transition: all 300ms linear; 
-	-webkit-text-stroke: 1px var(--white);
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-}
-
-.checkbox-budget:checked + label::before, .checkbox-budget:not(:checked) + label::before{
-	position: absolute;
-	content: '';
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	border-radius: 4px;
-	background-image: linear-gradient(138deg, var(--red), var(--yellow));
-	z-index: -1;
-}
-.checkbox-budget:checked + label span, .checkbox-budget:not(:checked) + label span{
-	position: relative;
-	display: block;
-}
-.checkbox-budget:checked + label span::before, .checkbox-budget:not(:checked) + label span::before{
-	position: absolute;
-	content: attr(data-hover);
-	top: 0;
-	left: 0;
-	width: 100%;
-	overflow: hidden;
-	-webkit-text-stroke: transparent;
-    -webkit-text-fill-color: var(--white);
-    color: var(--white);
-	-webkit-transition: max-height 0.3s;
-	-moz-transition: max-height 0.3s;
-	transition: max-height 0.3s;
-}
-.checkbox-budget:not(:checked) + label span::before{
-	max-height: 0;
-}
-.checkbox-budget:checked + label span::before{
-	max-height: 100%;
-}
 .h_iframe iframe {
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
+    background-color: whitesmoke;
 }
+
 .h_iframe {
     height: 100%;
-    width:100%;
+    width: 100%;
+}
+
+.ui-icon-CloseButton {
+    background-image: url("../images/Close_button.png"); 
+    height: 50px;
+    width: 50px;
+    scale: 45%;
 }

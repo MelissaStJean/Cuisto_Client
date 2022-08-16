@@ -5,7 +5,7 @@
     const apiBaseURL= "http://localhost:5000";
 
     function tokenRequestURL() {
-        return apiBaseURL + '/token';
+        return apiBaseURL + 'api/accounts/token';
     }
     function storeAccessToken(token) {
         localStorage.setItem('access_Token', token);
@@ -20,7 +20,7 @@
         return { 'Authorization': 'Bearer ' + retrieveAccessToken() };
     }
     function registerRequestURL() {
-        return apiBaseURL + '/api/account/register';
+        return apiBaseURL + '/api/accounts/register';
     }
     function storeLoggedUser(user) {
         localStorage.setItem('user', JSON.stringify(user));
@@ -34,7 +34,7 @@
     }
     function webAPI_Register(profil, successCallBack, errorCallBack){
         $.ajax({
-            url: apiBaseURL + "/api/accounts/register",
+            url: registerRequestURL(),
             type: 'POST',
             contentType:'application/json',
             data: JSON.stringify(profil),
@@ -70,8 +70,6 @@
             type: 'POST',
             data: JSON.stringify({Email, Password}),
             success: function (profil) {
-                console.log(JSON.stringify({Email,Password}))
-                console.log("Succès : " + profil);
                 storeAccessToken(profil.Access_token);
                 webAPI_getUserInfo(profil.UserId, successCallBack, errorCallBack);
             },
@@ -84,7 +82,7 @@
     }
     function webAPI_getUserInfo(userId, successCallBack, errorCallBack) {
         $.ajax({
-            url: apiBaseURL + "/api/account/index" + "/" + userId,
+            url: apiBaseURL + "/api/accounts/index" + "/" + userId,
             type: 'GET',
             contentType:'text/plain',
             data:{},
@@ -141,7 +139,6 @@
             headers: getBearerAuthorizationToken(),
             success:() => {
                 deConnect();
-                successCallBack(); 
             },
             error: function(jqXHR) {
                 deConnect();

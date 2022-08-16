@@ -14,18 +14,18 @@
     </head>
     <body>
         <div>
-            <img onclick='changePage("main")' src="images/Logo.png" style="height:200px;margin-left:12px; margin-right:5px;float:left;">
+            <img onclick='changePage("main")' src="images/Logo.png" style="height:200px;margin-left:12px; margin-right:5px;float:left;margin-bottom: 0px;">
             <div class="circle">
-                <div class="circle_text">Entrées</div>
+                <div class="circle_text">Entrées</div>  
             </div>
             <div class="circle">
-                <div class="circle_text">Les petites bouchées</div>
+               <div class="circle_text">Les petites bouchées</div>
             </div>
             <div class="circle">
                 <div class="circle_text">Plats principaux</div>
             </div>
             <div class="circle">
-                <div class="circle_text">Drink / cocktail</div>
+                <div class="circle_text">Breuvages</div>
             </div>
             <div class="circle">
                 <div class="circle_text">Dent sucrée</div>
@@ -33,12 +33,20 @@
             <div class="circle">
                 <div class="circle_text">Entre les repas</div>
             </div>
+            <div class="circle">
+                <div class="circle_text">+ de catégories</div>
+            </div>
         </div>
         <div>
             <span id="glyph" class="gicon glyphicon glyphicon-filter"></span>
-            <span id="glyph" onclick='showCategory("category")' class="gicon glyphicon glyphicon-chevron-down"></span>
+            <!--<span id="glyph" onclick='showCategory("category")' class="gicon glyphicon glyphicon-chevron-down"></span>-->
             <input style="font-size: 30px;" type="search" id="search" placeholder="Recherchez une recette" name="search">
             <span style="font-size: 45px;" class="glyphicon glyphicon-search"></span>
         </div>
     </body>
+    <script>
+          function changePage(name){
+            document.location.href = name + ".html";
+        }
+    </script>
 </html>

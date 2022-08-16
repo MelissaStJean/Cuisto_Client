@@ -12,6 +12,10 @@
         <!---STYLES BUNDLE -------------------------------------------------------------------------->
         <link rel="stylesheet" href="css/Cuisto.css">
 
+        <!-- Google Styles-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Tooltips styles -->
+        <link rel="stylesheet" href="css/tooltip.css">
         <!-- Use bootstrap icon -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <!-- Confirm dialog styles -->
@@ -19,28 +23,41 @@
         <!-- Font awesome styles -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Script Jquery -->
-        <script
-        src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-        crossorigin="anonymous"></script>
+        
+        <script src="./js/jquery-3.3.1.js"></script>
+        <script src="./js/jquery-ui.js"></script>
+        <script src="./js/jquery-confirm.js"></script>
+        <script src="./js/jquery.maskedinput.js"></script>
+        <script src="./js/jquery-ui.min.js"></script>
+        <script src="./js/bootstrap.js"></script>
 
-        <script src="js/WebAPIRequest.js"></script>
+        <!-- Script Jquery CSS-->
+        <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.css">
+        <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.min.css">
+        <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.structure.css">
+        <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.structure.min.css">
+        <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.theme.css">
+        <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.theme.min.css">
+        
+        <!-- Script Javascript-->
+        <script src="./js/WebAPIRequest.js"></script>
+        <script src="./js/Validation.js"></script>
 
         <link rel="icon" href="favicon.ico">
     </head>
-    <body>
-        <div class="h_iframe">
-            <iframe src="header.html"></iframe>
-        </div>
-        <div id="Panel">
+    <body style="background-color: whitesmoke;">
+       <div class="h_iframe">
+        <iframe src="header.html" style="height: 330px;"></iframe>
+       </div>
             <text id="TextAccount">Mon compte</text>
             <div style="margin-left:10px;text-align:left;">
                 <div id="avatarContainer"></div>
-                <h4 id="username">non connecté</h4>
+                <h4 id="username">Non connecté</h4>
             </div>
             <div class="dash"></div>
             <div class="open-btn">
-                <button class="button" onclick='openForm("dialog-loginForm")'><strong>Se connecter</strong></button> <h3>ou</h3>
+                <button class="button" id="btn_OpenLoginForm">
+                <strong>Se connecter</strong></button> <h3>ou</h3>
                 <button class="button" onclick='openForm("popupCreateForm")'><strong>S'inscrire</strong></button>
             </div>
             <text id="TextAccount">Mes outils</text>
@@ -53,72 +70,54 @@
                         <td>
                             <div style="width: 400px;">
                                 <text id="TextAccount">Mon frigo</text>
-                                <h5 style="margin-left:1vw; margin-right: 20px; text-align: justify;">C'est un outil permettant d'éviter le gaspillage alimentaire. Le but est simple : Sélectionnez les aliments et trouvez une recette.</h5>
-                                <button type="button" class="button" onclick='changePage("frigo")'><strong>Accéder à mon frigo</strong></button> 
-                                <br>
+                                <br><br>
+                                <img onclick='changePage("frigo")' src="images/Image_Frigo.png" style="height:200px;margin-left:12px; margin-right:5px;float:left;"></img>
                                 <br>
                             </div> 
                         </td>
                         <td>
                             <div style="width: 400px;">
                                 <text id="TextAccount">Aide-moi</text>
-                                <h5 style="margin-left:1vw; text-align: justify;">C'est un outil qui aide à répondre à la fameuse question "On mange quoi?"</h5>
-                                <button type="button" class="button" onclick='changePage("AideMoi")'><strong>Aide-moi</strong></button>
+                                <br><br>
+                                <img onclick='changePage("AideMoi")' src="images/Aide_Moi.png" style="height:200px;margin-left:12px; margin-right:5px;float:left;"></img>
                             </div>
                         </td>
                     </tr>
                 </table>
             </div>
-        </div>
 
         <!--Pop-up connection -->    
-        <div class="login-popup">
-            <div class="form-popup" id="dialog-loginForm" title="Connexion">
-              <form class="form-container">
-                <div>
-                    <button id="cancelButton" type="button" class="btn cancel" onclick='closeForm("dialog-loginForm")'>X</button>
-                </div>
-                <h2 style="margin-top: 5px">Connectez-vous</h2>
-                <label for="email">
-                <strong>E-mail</strong>
-                </label>
-                <input type="text" id="loginEmail" placeholder="Votre Email" name="email" required>
-                <label for="psw">
-                <strong>Mot de passe</strong>
-                </label>
-                <input type="password" id="loginPsw" placeholder="Votre Mot de passe" name="psw" required>
-                <!--<div class="form-group form-check">
+        <div id="dialog-loginForm" title="Connexion" class="dialog">
+            <form id="loginForm" class="form-group">
+                <input type="text" id="loginEmail" placeholder="Courriel" class="form-control" />
+                <input type="password" id="loginPsd" placeholder="Mot de passe" class="form-control" />
+                <br>
+                <div class="form-group form-check">
+                    <label class="form-check-label" form="remember-me">Se souvenir de moi</label>
                     <input type="checkbox" class="form-check-input" id="remember-me">
-                    <label class="form-check-label" for="remember-me">Se souvenir de moi</label>
-                </div>-->
-                <br>
-                <button onclick="Login()" type="submit" class="btn">Connecter</button>
-              </form>
-            </div>
-        </div>
-
-        <!--Pop-up création compte-->
-        <div class="create-popup">
-            <div class="form-popup" id="popupCreateForm">
-              <form action="/action_page.php" class="form-container">
-                <button id="cancelButton" type="button" class="btn cancel" onclick='closeForm("popupCreateForm")'>X</button>
-                <h2 style="margin-top: 5px">Créer un compte</h2>
-                <label for="name"><strong>Nom</strong></label>
-                <input type="text" id="createUsername" placeholder="Votre nom"  required>
-                <label for="email"><strong>E-mail</strong></label>
-                <input type="text" id="createEmail" placeholder="Votre email" required>
-                <label for="psw"><strong>Mot de passe</strong></label>
-                <input type="password" id="createPassword" placeholder="Votre mot de passe" required>
-
-                <div style="vertical-align:top; text-align: center ">
-                    <div class='NewsDownloader' id='avatar' defaultImageSrc='./../images/No_Avatar.png'></div>
-                    <label>(cliquez pour changer l'avatar)</label>
                 </div>
-                <br>
-                <button type="submit" class="btn">Connecter</button>
-              </form>
-            </div>
+            </form>
         </div>
+
+        <!--Pop-up création compte
+        <div class="dialog" id="dialog-registerForm" title="Enregistrement">
+            <form class="form-group">
+            <h2 style="margin-top: 5px">Créer un compte</h2>
+            <label for="name"><strong>Nom</strong></label>
+            <input type="text" id="createUsername" placeholder="Votre nom"  required>
+            <label for="email"><strong>E-mail</strong></label>
+            <input type="text" id="createEmail" placeholder="Votre email" required>
+            <label for="psw"><strong>Mot de passe</strong></label>
+            <input type="password" id="createPassword" placeholder="Votre mot de passe" required>
+
+            <div style="vertical-align:top; text-align: center ">
+                <div class='NewsDownloader' id='avatar' defaultImageSrc='./../images/No_Avatar.png'></div>
+                <label>(cliquez pour changer l'avatar)</label>
+            </div>
+            <br>
+            <button onclick="Register()" type="submit" class="btn">Connecter</button>
+            </form>
+        </div>-->
         <!--Les catégories
         <div class="blocCategory" id="category">
             <div style="margin-left: 10vw;">
@@ -132,6 +131,14 @@
     </body>
 
     <script>
+
+        $(document).ready(initVisual);
+
+        function initVisual(){
+            initRegister();
+            $("#btn_OpenLoginForm").click(OpenLoginForm);
+        }
+
         function openForm(id) {
             document.getElementById(id).style.display="block";
         }
@@ -150,6 +157,60 @@
         function Login(){
             webAPI_login($("#loginEmail").val(),$("#loginPsw").val(),updateUI(),failLogin());
         }
+        function Register(){
+            webAPI_Register($("#createUsername").val(),$("#createEmail").val(),$("#createPassword").val(), updateUI(),failLogin())
+        }
+
+        function initRegister(){
+            $("#dialog-loginForm").dialog(
+                {
+                    autoOpen: true,
+                    show: { effect: 'fade', speed: 400 },
+                    hide: { effect: 'fade', speed: 400 },
+                    class: 'ui-icon-CloseButton',
+                    buttons: [
+                        {
+                            id: 'btn-OkLogin',
+                            text: 'Ok',
+                            click: function () {
+                                webAPI_login($("#loginEmail").val(),
+                                    $("#loginPsw").val(),
+                                    () => {
+                                        $("#dialog-loginForm").dialog("close");
+                                        updateUI();
+                                    },
+                                    failLogin);
+                            }
+                        }
+                    ]
+                });
+                
+            $('#dialog-loginForm').on('dialogopen', function (event) {
+                if (localStorage.getItem('rememberme') == "1") {
+                    $("#remember-me").attr("checked", "checked");
+                    let email = localStorage.getItem('loginEmail');
+                    let password = localStorage.getItem('loginPsw');
+                    if (email) $("#loginEmail").val(email);
+                    if (password) $("#loginPsw").val(password);
+                } else {
+                    $("#loginEmail").val("");
+                    $("#loginPsw").val("");
+                }
+            });
+            
+            $('#dialog-loginForm').on('dialogclose', function (event) {
+                if ($('#remember-me').is(":checked")) {
+                    localStorage.setItem('rememberme', "1");
+                    localStorage.setItem('loginEmail', $("#loginEmail").val());
+                    localStorage.setItem('loginPsw', $("#loginPsw").val());
+                } else {
+                    localStorage.setItem('rememberme', "0");
+                    localStorage.removeItem('loginEmail');
+                    localStorage.removeItem('loginPsw');
+                }
+            });
+        }
+
         function failLogin() {
             console.log("Login failed")
             Alert("Connexion échouée");
@@ -168,6 +229,12 @@
             });
         }
 
+        function OpenLoginForm() {
+                $('#btn-OkLogin').addClass("btn btn-primary");
+                $('#btn-CancelLogin').addClass("btn btn-secondary");
+                $("#dialog-loginForm").dialog('open');
+        }
+
         function unsetUsername() {
             $("#username").html("<span style='color:white'>non connecté</span>");
         }
@@ -179,7 +246,7 @@
         function updateUI() {
             console.log("Update d'UI")
             let username = "";
-            if (retrieveLoggedUser() != null) {
+            if (retrieveLoggedUser() == null) {
                 username = retrieveLoggedUser().Name;
                 connected = true;
             }
