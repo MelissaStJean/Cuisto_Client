@@ -7,30 +7,196 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Frigo</title>
 
-    <!---STYLES BUNDLE -------------------------------------------------------------------------->
-    <link rel="stylesheet" href="css/Cuisto.css">
-
-    <!-- Use bootstrap icon -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- Confirm dialog styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-    <!-- Font awesome styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <link rel="icon" href="favicon.ico">
-</head>
-<body style="background-color: whitesmoke;">
+        <!---STYLES BUNDLE -------------------------------------------------------------------------->
+        <link rel="stylesheet" href="css/Cuisto.css">
+        <link rel="stylesheet" href="css/Frigo.css">
+        <!-- Google Styles-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Use bootstrap icon -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- Confirm dialog styles -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+        <!-- Font awesome styles -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <!-- Script Jquery -->
+        <script src="./js/jquery-3.3.1.js"></script>
+        <script src="./js/jquery-ui.js"></script>
+        <script src="./js/jquery-confirm.js"></script>
+        <script src="./js/jquery.maskedinput.js"></script>
+        <script src="./js/jquery-ui.min.js"></script>
+        <script src="./js/bootstrap.js"></script>
+        
+        <!-- Script Jquery CSS-->
+        <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.css">
+        <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.min.css">
+        <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.structure.css">
+        <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.structure.min.css">
+        <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.theme.css">
+        <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.theme.min.css">
+        <!-- Script Javascript-->
+        <script src="./js/Validation.js"></script>
+        <script src="./js/WebAPIRequest.js"></script>
+        
+    </head>
+    <body style="background-color: whitesmoke;">
     <div class="h_iframe">
-        <iframe src="header.html" style="height: 330px;"></iframe>
-       </div>
-    <div id="Panel">
-        <quote>L'outil permettant d'éviter le gaspillage alimentaire. Le but est simple : Sélectionnez les aliments et trouvez une recette.</quote>
+        <iframe src="header.html" style="height: 270px;"></iframe>
+    </div>
+       <h4>L'outil permettant d'éviter le gaspillage alimentaire. Le but est simple : Sélectionnez les aliments et trouvez une recette.</h4>
+       <div id="fridge_Fruits" class="fridge_Category">
+            <h3 class="fridge_Title">Fruits & légumes</h3>
+           <!-- <img src="images/Frigo_Fruits.png" style="height:50px; float:left; margin-bottom: 0px;">
+            <button id="glyph" class="gicon glyphicon glyphicon-plus" onClick='addIngredient()'></button>
+            <button id="glyph" class="gicon glyphicon glyphicon-minus" onClick='delete(this)'></button>-->
+            <div class="itemsContainer">
+                <table class="itemsTable" id="fruits_Container"> 
+                </table>
+            </div>
+        </div>
+        
+        <div id="fridge_Meat" class="fridge_Category">
+            <h3 class="fridge_Title">Viandes et poissons</h3>
+            <!-- <img src="images/Frigo_Viandes.png" style="height:50px; float:left; margin-bottom: 0px;">-->
+            <div class="itemsContainer">
+                <table class="itemsTable" id="meats_Container">
+                </table>
+            </div>
+        </div>
+
+        <div id="fridge_Milk" class="fridge_Category">
+            <h3 class="fridge_Title">Produits laitiers</h3>
+            <!-- <img src="images/Frigo_Lait.png" style="height:50px; float:left; margin-bottom: 0px;">-->
+            <div class="itemsContainer">
+                <table class="itemsTable" id="milks_Container">
+                </table>
+            </div>
+        </div>
+
+        <div id="fridge_Others" class="fridge_Category">
+            <h3 class="fridge_Title">Produits dérivés</h3>
+            <!-- <img src="images/Frigo_Produits.png" style="height:50px; float:left; margin-bottom: 0px;">-->
+            <div class="itemsContainer">
+                <table class="itemsTable" id="others_Container">
+                </table>
+            </div>
+        </div>
+        <img onclick='changePage("frigo")' src="images/Image_Frigo.png" style="height:200px;margin-left:12px; float:left; position: absolute;"></img>
+        <button style="position: absolute; margin-top: 250px;" type="button" class="button" onclick='changePage("AideMoi")'><strong>Trouve une recette !</strong></button>
+    <div class="addIngredient">
+        <h3>Ajoute un ingrédient</h3>
+        <input type="text" id="addIngredient" class="form-control" placeholder="Votre Ingredient"  required>
+        <button id="glyph" class="gicon glyphicon glyphicon-remove" onClick='clear()'></button>
         <br>
-        <button type="button" class="button" onclick='changePage("AideMoi")'><strong>Trouve une recette</strong></button>
+        <label for="quantity"><strong>Quantité</strong></label>
+        <div class="dropdown-content" id="myDropdown">
+            <input class="form-control" type="text" id="quantityIngredient" placeholder="Quantité" required/>
+            <select name="mesure">
+                <option>Unité</option>
+                <option>Mililitre</option>
+                <option>Litre</option>
+                <option>Gramme</option>
+            </select>
+            <br>
+            <label for="Catégorie">Catégorie</label>
+            <select id="ingredientCategory" name="Catégorie Ingredient">
+                <option>Fruits et légumes</option>
+                <option>Viandes et poissons</option>
+                <option>Produits laitiers</option>
+                <option>Produits dérivés</option>
+            </select>
+        </div>
+
+
+        <button id="glyph" class="gicon glyphicon glyphicon-calendar" onClick='addIngredient()'></button>
     </div>
 </body>
 <script>
+        $(document).ready(initVisual);
 
+function initVisual(){
+    getIngredients();
+}
+
+function addIngredient(){}
     
+
+function getIngredients(){
+    webAPI_GET_All_Ingredients("",updateIngredientList,AlertError);
+}
+
+function updateIngredientList(ingredients) {
+    console.log(ingredients);
+    $('#fruits_Container').empty();
+    $('#meats_Container').empty();
+    $('#milks_Container').empty();
+    $('#others_Container').empty();
+    //let loggedUserId = (retrieveLoggedUser() ? retrieveLoggedUser().Id : null);
+    //if (loggedUserId) {
+        ingredients.forEach(ingredient => {
+            //if(ingredient.UserId == loggedUserId){
+                switch(ingredient.IngredientCategory){
+                    case "Fruits et légumes":
+                        $('#fruits_Container').append(fridgeItems(ingredient));
+                        break;
+                    case "Viandes et poissons":
+                        $('#meats_Container').append(fridgeItems(ingredient));
+                        break;
+                    case "Produits laitiers":
+                        $('#milks_Container').append(fridgeItems(ingredient));
+                        break;
+                    case "Produits dérivés":
+                        $('#others_Container').append(fridgeItems(ingredient));
+                        break;
+                }
+            //}
+        });
+    //}
+}
+
+function fridgeItems(ingredient) {
+    let trElement = document.createElement("tr");
+    let tdElement = document.createElement("td");
+    trElement.setAttribute("style","width:200px;height:25px");
+    let ingredientName = document.createElement("h4");
+    ingredientName.textContent = ingredient.IngredientName
+    let quantityName = document.createElement("h4");
+    quantityName.textContent = ingredient.IngredientQuantity;
+    let expirationDate = document.createElement("h4");
+    expirationDate.textContent =ingredient.IngredientExpirationDate;
+    tdElement.append(ingredientName);
+    tdElement.append(quantityName);
+    tdElement.append(expirationDate);
+    trElement.append(tdElement);
+    return trElement;
+}
+
+function AlertError(status) {
+    $.confirm({
+        title: "Message provenant du server..." + status,
+        content: '<img src="images/error.png" style="width:60px;margin:10px" alt="httpError"/>' + statusToString(status),
+        buttons: {
+            fermer: function () {
+                this.close();
+                if (status == 401) {
+                    forceLogout();
+                }
+                pauseNewsListPeriodicRefresh = true;
+            }
+        }
+    });
+}
+
+
+function statusToString(status) {
+    let text = "Le serveur ne répond pas.";
+    switch (status) {
+        case 401: text = "<br>Requête non autorisée. <br>Vous devez être connecté."; break;
+        case 409: text = "<br>Conflit de données. <br>Requête refusée."; break;
+        case 422: text = "<br>Format des données soumises incorrect. <br>Requête refusée."; break;
+    }
+    return text;
+}
+
 </script>
 </html>

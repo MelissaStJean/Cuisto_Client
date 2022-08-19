@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr-FR">
-
     <head>
         <meta charset="UTF-8">
         <meta author="Mélissa St-Jean & Alexandre Tardif">
@@ -11,25 +10,25 @@
 
         <!---STYLES BUNDLE -------------------------------------------------------------------------->
         <link rel="stylesheet" href="css/Cuisto.css">
-
         <!-- Google Styles-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!-- Tooltips styles -->
-        <link rel="stylesheet" href="css/tooltip.css">
         <!-- Use bootstrap icon -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <!-- Confirm dialog styles -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
         <!-- Font awesome styles -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <!-- Script Jquery -->
         
+        <!-- Script Javascript-->
+        <script src="./js/WebAPIRequest.js"></script>
+        <script src="./js/Validation.js"></script>
+        <!-- Script Jquery -->
         <script src="./js/jquery-3.3.1.js"></script>
+        <script src="./js/bootstrap.js"></script>
         <script src="./js/jquery-ui.js"></script>
+        <script src="./js/jquery-ui.min.js"></script>
         <script src="./js/jquery-confirm.js"></script>
         <script src="./js/jquery.maskedinput.js"></script>
-        <script src="./js/jquery-ui.min.js"></script>
-        <script src="./js/bootstrap.js"></script>
 
         <!-- Script Jquery CSS-->
         <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.css">
@@ -39,58 +38,62 @@
         <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.theme.css">
         <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.theme.min.css">
         
-        <!-- Script Javascript-->
-        <script src="./js/WebAPIRequest.js"></script>
-        <script src="./js/Validation.js"></script>
 
         <link rel="icon" href="favicon.ico">
     </head>
     <body style="background-color: whitesmoke;">
-       <div class="h_iframe">
-        <iframe src="header.html" style="height: 330px;"></iframe>
-       </div>
-            <text id="TextAccount">Mon compte</text>
-            <div style="margin-left:10px;text-align:left;">
-                <div id="avatarContainer"></div>
-                <h4 id="username">Non connecté</h4>
-            </div>
-            <div class="dash"></div>
-            <div class="open-btn">
-                <button class="button" id="btn_OpenLoginForm">
-                <strong>Se connecter</strong></button> <h3>ou</h3>
-                <button class="button" onclick='openForm("popupCreateForm")'><strong>S'inscrire</strong></button>
-            </div>
-            <text id="TextAccount">Mes outils</text>
-            <div class="dash"></div>
-            <br>
-            <br>
-            <div style="display: inline-block;">
-                <table>
-                    <tr>
-                        <td>
-                            <div style="width: 400px;">
-                                <text id="TextAccount">Mon frigo</text>
-                                <br><br>
-                                <img onclick='changePage("frigo")' src="images/Image_Frigo.png" style="height:200px;margin-left:12px; margin-right:5px;float:left;"></img>
-                                <br>
-                            </div> 
-                        </td>
-                        <td>
-                            <div style="width: 400px;">
-                                <text id="TextAccount">Aide-moi</text>
-                                <br><br>
-                                <img onclick='changePage("AideMoi")' src="images/Aide_Moi.png" style="height:200px;margin-left:12px; margin-right:5px;float:left;"></img>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
 
-        <!--Pop-up connection -->    
-        <div id="dialog-loginForm" title="Connexion" class="dialog">
+        <div class="h_iframe">
+            <iframe src="header.html" style="height: 270px;"></iframe>
+        </div>
+
+        <text class="textAccount">Mon compte</text>
+        <div style="margin-left:10px;text-align:left;">
+            <div id="avatarContainer"></div>
+            <h4 id="username">Non connecté</h4>
+        </div>
+        <div class="dash"></div>
+        <div id="contentAccount" class="open-btn">
+            <button class="button" id="btn_OpenLoginForm">
+            <strong>Se connecter</strong></button> <h3>ou</h3>
+            <button class="button" id="btn_OpenRegisterForm"><strong>S'inscrire</strong></button>
+            <div id="btn_Logout" tooltip="Déconnexion" tooltip-position="bottom">
+                <p>Se déconnecter?</p>
+            </div>
+        </div>
+        <text class="textAccount">Mes outils</text>
+        <div class="dash"></div>
+        <br>
+        <br>
+        <div style="display: inline-block;">
+            <table>
+                <td>
+                    <div id="btn_Frigo" style="width: 400px;">
+                        <text class="textAccount" id="btnFrigo">Mon frigo</text>
+                        <br><br>
+                        <img onclick='changePage("frigo")' src="images/Image_Frigo.png" style="height:200px;margin-left:12px; margin-right:5px;float:left;"></img>
+                        <br>
+                    </div> 
+                </td>
+                <td>
+                    <div id="btn_Aide" style="width: 400px;">
+                        <text class="textAccount">Aide-moi</text>
+                        <br><br>
+                        <img onclick='changePage("aideMoi")' src="images/Aide_Moi.png" style="height:200px;margin-left:12px; margin-right:5px;float:left;"></img>
+                    </div>
+                </td>
+            </table>
+        </div>
+
+        <!--Pop-up connexion usager-->    
+        <div id="dialog-loginForm" class="dialog" title="Connexion">
             <form id="loginForm" class="form-group">
-                <input type="text" id="loginEmail" placeholder="Courriel" class="form-control" />
-                <input type="password" id="loginPsd" placeholder="Mot de passe" class="form-control" />
+                <p id="confirmCreation" style="color : green">Création de compte réussi</p>
+                <label for="email"><strong>Email : </strong></label>
+                <input type="text" id="loginEmail" placeholder="Courriel" class="form-control" required/>
+                <br>
+                <label for="psw"><strong>Mot de passe :</strong></label>
+                <input type="password" id="loginPsw" placeholder="Mot de passe" class="form-control" required/>
                 <br>
                 <div class="form-group form-check">
                     <label class="form-check-label" form="remember-me">Se souvenir de moi</label>
@@ -99,44 +102,42 @@
             </form>
         </div>
 
-        <!--Pop-up création compte
-        <div class="dialog" id="dialog-registerForm" title="Enregistrement">
-            <form class="form-group">
-            <h2 style="margin-top: 5px">Créer un compte</h2>
-            <label for="name"><strong>Nom</strong></label>
-            <input type="text" id="createUsername" placeholder="Votre nom"  required>
-            <label for="email"><strong>E-mail</strong></label>
-            <input type="text" id="createEmail" placeholder="Votre email" required>
-            <label for="psw"><strong>Mot de passe</strong></label>
-            <input type="password" id="createPassword" placeholder="Votre mot de passe" required>
-
-            <div style="vertical-align:top; text-align: center ">
-                <div class='NewsDownloader' id='avatar' defaultImageSrc='./../images/No_Avatar.png'></div>
-                <label>(cliquez pour changer l'avatar)</label>
-            </div>
-            <br>
-            <button onclick="Register()" type="submit" class="btn">Connecter</button>
+        <!--Pop-up création compte-->
+        <div id="dialog-registerForm" class="dialog" title="Créer un compte">
+            <form id="registerForm" class="form-group">
+                <input type="hidden" id="avatarGUID" />
+                <input type="hidden" id="createProfilId" />
+                <label for="name"><strong>Nom</strong></label>
+                <input type="text" id="createUsername" placeholder="Votre nom" class="form-control"  required>
+                <br>
+                <label for="email"><strong>E-mail</strong></label>
+                <input type="text" id="createEmail" placeholder="Votre email" class="form-control" required>
+                <br>
+                <label for="psw"><strong>Mot de passe</strong></label>
+                <input type="password" id="createPassword" placeholder="Votre mot de passe" class="form-control" required>
+                <br>
+                <div style="vertical-align:top; ">
+                    <button id="avatarImage" style="border: hidden; box-shadow: none;" onclick="importData()"><img id='avatar' src='images/No_Avatar.png'></img></button>
+                    <label>(cliquez pour changer l'avatar)</label>
+                </div>
             </form>
-        </div>-->
-        <!--Les catégories
-        <div class="blocCategory" id="category">
-            <div style="margin-left: 10vw;">
-                <p>5 ingrédients et –</p>
-                <p>Rapide & efficace</p>
-                <p>Les classiques </p>
-                <p>Prêt à congeler</p>
-                <p>Sans cuisson</p>
-            </div>
-        </div>-->
+        </div>
     </body>
-
     <script>
-
         $(document).ready(initVisual);
+        
+        let profilValidationProvider = null;
 
         function initVisual(){
-            initRegister();
+            initLogin();
             $("#btn_OpenLoginForm").click(OpenLoginForm);
+            initRegister();
+            $("#btn_OpenRegisterForm").click(OpenRegisterForm);
+            $("#btn_Logout").hide();
+            $("#confirmCreation").hide();
+            //$("#btn_Frigo").hide();
+            //$("#btn_Aide").hide();
+            $("#btn_Logout").click(OpenConfirmLogout);
         }
 
         function openForm(id) {
@@ -147,9 +148,6 @@
             document.getElementById(id).style.display="none";
         }
 
-        function showCategory(id){
-            document.getElementById(id).style.display="block";
-        }
         function changePage(name){
             document.location.href = name + ".html";
         }
@@ -157,21 +155,19 @@
         function Login(){
             webAPI_login($("#loginEmail").val(),$("#loginPsw").val(),updateUI(),failLogin());
         }
-        function Register(){
-            webAPI_Register($("#createUsername").val(),$("#createEmail").val(),$("#createPassword").val(), updateUI(),failLogin())
-        }
 
-        function initRegister(){
+        function initLogin(){
             $("#dialog-loginForm").dialog(
                 {
-                    autoOpen: true,
+                    autoOpen: false,
                     show: { effect: 'fade', speed: 400 },
                     hide: { effect: 'fade', speed: 400 },
-                    class: 'ui-icon-CloseButton',
+                    minheight: "auto",
+                    minwidth: "auto",
                     buttons: [
                         {
                             id: 'btn-OkLogin',
-                            text: 'Ok',
+                            text: 'Connecte-moi',
                             click: function () {
                                 webAPI_login($("#loginEmail").val(),
                                     $("#loginPsw").val(),
@@ -211,6 +207,117 @@
             });
         }
 
+        function FindUsers(){
+            webAPI_getUsersInfo(getUsers,AlertError);
+        }
+
+        function getUsers(users){
+            users.sort(function(a, b){
+            if(a.Name < b.Name) { return -1; }
+            if(a.Name > b.Name) { return 1; }
+            return 0;
+            })
+        }
+
+        function AlertError(status) {
+            $.confirm({
+                title: "Message provenant du server..." + status,
+                content: '<img src="images/error.png" style="width:60px;margin:10px" alt="httpError"/>' + statusToString(status),
+                buttons: {
+                    fermer: function () {
+                        this.close();
+                        if (status == 401) {
+                            forceLogout();
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateConnected() {
+            connected = false;
+            let username = "";
+            if (retrieveLoggedUser() != null) {
+                username = retrieveLoggedUser().Name;
+                connected = true;
+            }
+            if (connected) {
+                setUsername(username);
+                //$("#avatarContainer").empty();
+                //$("#avatarContainer").append(html_fittedAvatar(retrieveLoggedUser().AvatarURL, 'avatar'));
+                $("#btn_Logout").show();
+                $("#btn_OpenLoginForm").hide();
+                $("#btn_OpenRegisterForm").hide()
+                //$("#btn_Frigo").show();
+                //$("#btn_Aide").show();
+                $('#btn_OpenProfilDialog').attr("tooltip", "Profil");
+            }
+            else {
+                //$("#avatarContainer").empty();
+                //$("#btn_OpenConfirmLogout").hide();
+                unsetUsername();
+                $("#btn_Logout").hide();
+                $("#btn_OpenLoginForm").show();
+                $("#btn_OpenRegisterForm").show()
+                //$("#btn_Frigo").hide();
+                //$("#btn_Aide").hide();
+                $('#btn_OpenProfilDialog').attr("tooltip", "Création de compte");
+            }
+        }
+
+        function statusToString(status) {
+            let text = "Le server ne répond pas.";
+            switch (status) {
+                case 401: text = "<br>Requête non autorisée. <br>Vous devez être connecté."; break;
+                case 409: text = "<br>Conflit de données. <br>Requête refusée."; break;
+                case 422: text = "<br>Format des données soumises incorrect. <br>Requête refusée."; break;
+            }
+            return text;
+        }
+
+        function initRegister(){
+            $("#dialog-registerForm").dialog(
+                {
+                    autoOpen: false,
+                    show: { effect: 'fade', speed: 400 },
+                    hide: { effect: 'fade', speed: 400 },
+                    minheight: "auto",
+                    minwidth: "auto",
+                    buttons: [
+                        {
+                            id: 'btn-OkRegister',
+                            text: 'Inscris-moi',
+                            click: function () {
+                                let profilFromForm = {
+                                    Id: parseInt($("#createProfilId").val()),
+                                    Name: $("#createUsername").val(),
+                                    Email: $("#createEmail").val(),
+                                    Password: $("#createPassword").val(),
+                                    AvatarGUID: $("#avatarGUID").val()
+                                }
+                                profilFromForm.Id = 0;
+                                webAPI_Register(profilFromForm,() => { $("#dialog-registerForm").dialog("close"); $("#dialog-loginForm").dialog("open"); $("#confirmCreation").show();}, updateUI,AlertError);
+                                
+                            }
+                        }
+                    ]
+                });
+        }
+
+        function OpenConfirmLogout() {
+            $.confirm({
+                title: 'Déconnection...',
+                content: 'Voulez-vous vous déconnecter?',
+                buttons: {
+                    confirmer: function () {
+                        pauseNewsListPeriodicRefresh = false;
+                        webAPI_logout(retrieveLoggedUser().Id, updateUI, AlertError);
+                    },
+                    annuler: {},
+                }
+            });
+        }
+        
         function failLogin() {
             console.log("Login failed")
             Alert("Connexion échouée");
@@ -230,27 +337,39 @@
         }
 
         function OpenLoginForm() {
-                $('#btn-OkLogin').addClass("btn btn-primary");
-                $('#btn-CancelLogin').addClass("btn btn-secondary");
-                $("#dialog-loginForm").dialog('open');
+            $('#btn-CancelLogin').addClass("btn btn-dark");
+            $("#dialog-loginForm").dialog('open');
+            $('#btn-OkLogin').addClass("btn btn-secondary");
+        } 
+
+        function OpenRegisterForm() {
+            $('#btn-CancelRegister').addClass("btn btn-secondary");
+            $("#dialog-registerForm").dialog('open');
+            $('#btn-OkRegister').addClass("btn btn-secondary");
+        }
+        
+        function setUsername(username) {
+            $("#username").html("<span style='color:black;'>" + username + "</span>");
         }
 
         function unsetUsername() {
-            $("#username").html("<span style='color:white'>non connecté</span>");
-        }
-
-        function setUsername(username) {
-            $("#username").html("<span style='color:white;'>" + username + "</span>");
+            $("#username").html("<span style='color:black'>non connecté</span>");
         }
 
         function updateUI() {
             console.log("Update d'UI")
-            let username = "";
-            if (retrieveLoggedUser() == null) {
-                username = retrieveLoggedUser().Name;
-                connected = true;
-            }
-            setUsername(username);
+            updateConnected();
+        }
+
+        function importData() {
+            let input = document.createElement('input');
+            input.type = 'file';
+            input.onchange = _ => {
+                let files =   Array.from(input.files);
+                console.log(files);
+                //document.getElementById("#avatarImage").src="newSource.png";
+            };
+            input.click();
         }
     </script>
 </html>

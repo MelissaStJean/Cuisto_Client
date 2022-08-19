@@ -1,0 +1,4 @@
+.searchRecipe:hover{
+	cursor: pointer;
+	transform: rotateX(360deg);
+}

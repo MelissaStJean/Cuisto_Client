@@ -8,6 +8,7 @@
 
     <!---STYLES BUNDLE -------------------------------------------------------------------------->
     <link rel="stylesheet" href="css/Cuisto.css">
+    <link rel="stylesheet" href="css/AideMoi.css">
 
     <!-- Use bootstrap icon -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -20,39 +21,90 @@
 </head>
 <body style="background-color: whitesmoke;">  
     <div class="h_iframe">
-        <iframe src="header.html"></iframe>
+        <iframe src="header.html" style="height: 270px;"></iframe>
     </div>
-    <div id="Panel">
+    <div id="panel">
         <quote>L'outil qui répond à la fameuse question "On mange quoi?</quote>
+        <img src="images/Aide_Moi.png" style="height:200px;margin-left:12px; margin-right:10px;float:left;"></img>
         <p>Choisissez le type de recette</p>
-        <div class="col-xl-10 pb-5">
-            <input type="radio" name="typeRecipe" id="entries" checked>
+        <div>
+            <input type="radio" name="typeRecipe" id="breakfast">
+            <label class="for-checkbox-budget" for="breakfast">
+                <span data-hover="Déjeuners">Déjeuners</span>
+            </label>
+            <input type="radio" name="typeRecipe" id="entries">
             <label class="for-checkbox-budget" for="entries">
                 <span data-hover="Entrées">Entrées</span>
-            </label>
-            <input type="radio" name="typeRecipe" id="smallBites">
-            <label class="for-checkbox-budget" for="smallBites">	
-                <span data-hover="Les petites bouchées">Les petites bouchées</span>	
             </label>
             <input type="radio" name="typeRecipe" id="mainCourse">
             <label class="for-checkbox-budget" for="mainCourse">	
                 <span data-hover="Plats principaux">Plats principaux</span>	
             </label>
-            <input type="radio" name="typeRecipe" id="drinkCocktail">
-            <label class="for-checkbox-budget" for="drinkCocktail">	
-                <span data-hover="Drink & cocktail">Breuvages</span>	
+            <input type="radio" name="typeRecipe" id="desserts">
+            <label class="for-checkbox-budget" for="desserts">	
+                <span data-hover="Desserts">Desserts</span>	
             </label>
-            <input type="radio" name="typeRecipe" id="sweetTooth">
-            <label class="for-checkbox-budget" for="sweetTooth">	
-                <span data-hover="Dent sucrée">Dent sucrée</span>	
+            <input type="radio" name="typeRecipe" id="beverage">
+            <label class="for-checkbox-budget" for="beverage">	
+                <span data-hover="Breuvages">Breuvages</span>	
             </label>
             <input type="radio" name="typeRecipe" id="snacks">
             <label class="for-checkbox-budget" for="snacks">	
-                <span data-hover="Entre les repas">Entre les repas</span>	
+                <span data-hover="Collations">Collations</span>	
             </label>
         </div>  
         <p>Choisissez des filtres</p>
-        <button type="button" class="button" onclick='changePage("AideMoi")' style="margin-left: 45%"><strong>Trouve une recette</strong></button>
+        <table>
+            <td>
+                <div style="width: 200px;">
+                    <input type="checkbox" id="healthy" name="healthy" value="healthy">
+                    <label for="healthy"> Santé</label><br>
+                    <input type="checkbox" id="5ingredients" name="5ingredients" value="5ingredients">
+                    <label for="5ingredients"> 5 ingrédients</label><br>
+                    <input type="checkbox" id="30minutes" name="30minutes" value="30minutes">
+                    <label for="30minutes"> - 30 min</label><br>
+                    <input type="checkbox" id="noHeat" name="noHeat" value="noHeat">
+                    <label for="noHeat"> Sans cuisson</label><br>
+                    <br>
+                </div> 
+            </td>
+            <td>
+                <div style="width: 200px;">
+                    <input type="checkbox" id="sauces" name="sauces" value="sauces">
+                    <label for="sauces"> Sauces</label><br>
+                    <input type="checkbox" id="pasta" name="pasta" value="pasta">
+                    <label for="pasta"> Pâtes</label><br>
+                    <input type="checkbox" id="meat" name="meat" value="meat">
+                    <label for="meat"> Viandes</label><br>
+                    <input type="checkbox" id="fish" name="fish" value="fish">
+                    <label for="fish"> Poissons</label><br>
+                    <br>
+                </div> 
+            </td>
+            <td>
+                <div style="width: 200px;">
+                    <input type="checkbox" id="cakes" name="cakes" value="cakes">
+                    <label for="cakes"> Gâteaux</label><br>
+                    <input type="checkbox" id="blender" name="blender" value="blender">
+                    <label for="blender"> Au mélangeur</label><br>
+                    <input type="checkbox" id="Bbq" name="Bbq" value="Bbq">
+                    <label for="Bbq"> Au Bbq</label><br>
+                    <input type="checkbox" id="jar" name="jar" value="jar">
+                    <label for="jar"> Pot masson</label><br>
+                    <br>
+                </div> 
+            </td>
+            <td>
+                <div style="width: 200px;">
+                    <input type="checkbox" id="internationalRecipe" name="internationalRecipe" value="internationalRecipe">
+                    <label for="internationalRecipe"> Recette étrangère</label><br>
+                    <input type="checkbox" id="canFreeze" name="canFreeze" value="canFreeze">
+                    <label for="canFreeze"> À congeler</label>
+                    <br>
+                </div> 
+            </td>
+        </table>
+        <button type="button" class="button" onclick='searchRecipe()' style="margin-left: 30%"><strong>Trouve une recette</strong></button>
     </div>			
 </body>
 <script>

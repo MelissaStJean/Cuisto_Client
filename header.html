@@ -12,41 +12,52 @@
         <!-- Confirm dialog styles -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
     </head>
-    <body>
-        <div>
-            <img onclick='changePage("main")' src="images/Logo.png" style="height:200px;margin-left:12px; margin-right:5px;float:left;margin-bottom: 0px;">
-            <div class="circle">
-                <div class="circle_text">Entrées</div>  
-            </div>
-            <div class="circle">
-               <div class="circle_text">Les petites bouchées</div>
-            </div>
-            <div class="circle">
-                <div class="circle_text">Plats principaux</div>
-            </div>
-            <div class="circle">
-                <div class="circle_text">Breuvages</div>
-            </div>
-            <div class="circle">
-                <div class="circle_text">Dent sucrée</div>
-            </div>
-            <div class="circle">
-                <div class="circle_text">Entre les repas</div>
-            </div>
-            <div class="circle">
-                <div class="circle_text">+ de catégories</div>
-            </div>
+    <body style="background-color: whitesmoke;">
+        <a href="main.html" target="_parent"><img src="images/Logo.png" style="height:180px; margin-left:12px; float:left; margin-bottom: 0px;"></a>
+        <div class="circle">
+            <div class="circle_text">Déjeuners</div>
         </div>
-        <div>
-            <span id="glyph" class="gicon glyphicon glyphicon-filter"></span>
-            <!--<span id="glyph" onclick='showCategory("category")' class="gicon glyphicon glyphicon-chevron-down"></span>-->
-            <input style="font-size: 30px;" type="search" id="search" placeholder="Recherchez une recette" name="search">
-            <span style="font-size: 45px;" class="glyphicon glyphicon-search"></span>
+        <div class="circle">
+            <div class="circle_text">Entrées</div>  
+        </div>
+        <div class="circle">
+            <div class="circle_text">Plats principaux</div>
+        </div>
+        <div class="circle">
+            <div class="circle_text">Desserts</div>
+        </div>
+        <div class="circle">
+            <div class="circle_text">Breuvages</div>
+        </div>
+        <div class="circle">
+            <div class="circle_text">Collations</div>
+        </div>
+        <div class="circle" style="margin-right: 60px;">
+            <div class="circle_text">+ de catégories</div>
+        </div>
+        <div id="bar" style="background-color: whitesmoke; height: 50px; margin-top: 30px; display: block; position: relative; ">
+            <button id="glyph" class="gicon glyphicon glyphicon-filter" onClick='showCategory()' style="margin-left: 30px;"></button>
+            <div class="inner-addon right-addon" style="margin-right: 15px;">
+                <i class="glyphicon glyphicon-search"></i>
+                <input style="width: 200px;" maxlength="20" type="text" class="form-control" placeholder="Rechercher" />
+            </div>
         </div>
     </body>
     <script>
-          function changePage(name){
+        function changePage(name){
             document.location.href = name + ".html";
+        }
+
+        function showCategory(){
+            /*<div class="blocCategory" id="category">
+                <div style="margin-left: 10vw;">
+                    <p>5 ingrédients et –</p>
+                    <p>Rapide & efficace</p>
+                    <p>Les classiques </p>
+                    <p>Prêt à congeler</p>
+                    <p>Sans cuisson</p>
+                </div>
+            </div>*/
         }
     </script>
 </html>

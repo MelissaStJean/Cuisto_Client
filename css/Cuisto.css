@@ -1,40 +1,37 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=devanagari,latin-ext');
 
-:root{
-    --col-salmon: #c5c1bf;
-    --col-lightSalmon: #cfc9c5;
-    --grey: #535353;
-	--light-grey: #afaeae;
-	--red: #ff7648;
-	--yellow: #2c2927;
+:root {
+    --col-baby-grey: #ded5d5;
+    --col-grey: #757575;
+	--col-light-grey: #afaeae;
 }
 
-#TextAccount{
-    font-size: 2em;
-    padding-left: 1vw;
+.h_iframe iframe{
+    width: 100%;
 }
 
 /*Les bulles des catégories*/
-.circle{
-    background-image:-webkit-linear-gradient(top, var(--col-lightSalmon) 0%, var(--col-salmon) 100%);
-    background-image: linear-gradient(to bottom, var(--col-lightSalmon) 0%, var(--col-salmon) 100%);
-    margin-left: 2vw;
+.circle {
+    background-image:-webkit-linear-gradient(top, var(--col-baby-grey) 0%, var(--col-grey) 100%);
+    background-image: linear-gradient(to bottom, var(--col-baby-grey) 0%, var(--col-grey) 100%);
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%; 
+    border-radius: 50%;
+    margin-left: 1.5vw;
     margin-top: 2vh;
     width: 10vw;
     height: 60vh;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 1.5vw;
-    font-family: 'Roboto', Arial, sans-serif;
-    float: left; 
     padding: 2px;
+    padding-top: 20px;
+    display: inline-block;
+    text-align: center;
+    font-size: 1.35vw;
+    font-family: 'Roboto', Arial, sans-serif;
 }
 
-.circle:hover{
-    background-image:-webkit-linear-gradient(top, var(--col-lightSalmon) 50%, var(--col-salmon) 100%);
-    background-image: linear-gradient(to bottom, var(--col-lightSalmon) 50%, var(--col-salmon) 100%);
+.circle:hover {
+    background-image:-webkit-linear-gradient(top, var(--col-baby-grey) 50%, var(--col-grey) 100%);
+    background-image: linear-gradient(to bottom, var(--col-baby-grey) 50%, var(--col-grey) 100%);
 }
 
 .circle_text {
@@ -42,8 +39,30 @@
     padding-top: 15vh;
 }
 
+.inner-addon {
+    position: relative;
+    float: right;
+}
+
+/* style glyph */
+.inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+    float: right;
+}
+  
+/* align glyph */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { padding-left: 175px;}
+
+.textAccount {
+    font-size: 2em;
+    padding-left: 1vw;
+}
+
 /*La ligne en dessous de account*/
-.dash{
+.dash {
     border: 1px solid rgb(0, 0, 0);
     width: 800px;
     height: 0px;
@@ -58,37 +77,16 @@
 
 /* Stylez et fixez le bouton sur la page */
 .button {
-    background-color: var(--grey);
+    background-color: var(--col-grey);
+    opacity: 0.8;
     padding: 12px 15px;
+    margin: 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    opacity: 0.8;
-    margin: 20px;
-    color:var(--col-lightSalmon)
+    color:white
 }
-/* Positionnez la forme Popup */
-.login-popup,.create-popup {
-    position: relative;
-    text-align: center;
-    width: 100%;
-}
-/* Masquez la forme Popup */
-.form-popup {
-    display: none;
-    position: fixed;
-    left: 45%;
-    top:5%;
-    transform: translate(-45%,5%);
-    border: 2px solid rgb(132, 112, 99);
-    z-index: 9;
-}
-/* Styles pour le conteneur de la forme */
-.form-container {
-    max-width: 380px;
-    padding: 20px;
-    background-color: rgb(155, 93, 43);
-}
+
 /* Largeur complète pour les champs de saisie */
 .form-container input[type=text], .form-container input[type=password] {
     width: 90%;
@@ -104,7 +102,7 @@
 }
 /* Styler le bouton de connexion */
 .form-container .btn {
-    background-color: #beb3a9;
+    background-color: #b3aca6;
     padding: 12px 10px;
     border: none;
     cursor: pointer;
@@ -117,44 +115,32 @@
     opacity: 1;
 }
 
-#cancelButton{
-    margin-left: 17vw;
-    width: 1.5vw;
-    height: 1vh;
-    line-height: 1px;
+.ui-dialog .ui-dialog-titlebar-close
+{
+  background-image: url(https://cdnjs.cloudflare.com/ajax/libs/aui/6.0.1/aui/css/icons/aui-icon-close.png);
 }
 
-#glyph{
-    font-size: 45px;
-    margin-right: 31vw;
-    margin-left: 2vw;
+.ui-dialog .ui-dialog-titlebar-close:hover
+{
+  background-image: url(https://cdnjs.cloudflare.com/ajax/libs/aui/6.0.1/aui/css/icons/aui-icon-close.png);
 }
 
-[type="checkbox"]:checked,
-[type="checkbox"]:not(:checked),
-[type="radio"]:checked,
-[type="radio"]:not(:checked){
-	position: absolute;
-	left: -9999px;
-	width: 0;
-	height: 0;
-	visibility: hidden;
+#glyph {
+    background-color: transparent; 
+    border-color:transparent;
+    font-size: 30px;
 }
 
-.h_iframe iframe {
-    width: 100%;
-    height: 100%;
-    background-color: whitesmoke;
-}
-
-.h_iframe {
-    height: 100%;
-    width: 100%;
-}
-
-.ui-icon-CloseButton {
-    background-image: url("../images/Close_button.png"); 
-    height: 50px;
+#avatar {
     width: 50px;
-    scale: 45%;
+    height: 50px;
 }
+
+.fridge{
+    background-color: var(--col-light-grey);
+    size-adjust: content;
+    margin-left: 300px;
+    margin-right: 300px;
+    padding: 100px;
+}
+

@@ -5,7 +5,7 @@
     const apiBaseURL= "http://localhost:5000";
 
     function tokenRequestURL() {
-        return apiBaseURL + 'api/accounts/token';
+        return apiBaseURL + '/token';
     }
     function storeAccessToken(token) {
         localStorage.setItem('access_Token', token);
@@ -20,7 +20,7 @@
         return { 'Authorization': 'Bearer ' + retrieveAccessToken() };
     }
     function registerRequestURL() {
-        return apiBaseURL + '/api/accounts/register';
+        return apiBaseURL + '/accounts/register';
     }
     function storeLoggedUser(user) {
         localStorage.setItem('user', JSON.stringify(user));
@@ -49,7 +49,7 @@
     }
     function webAPI_ChangeProfil( profil , successCallBack, errorCallBack) {
         $.ajax({
-            url: apiBaseURL + "/accounts/change",
+            url: apiBaseURL + "/api/accounts/change",
             type: 'PUT',
             headers: getBearerAuthorizationToken(),
             contentType:'application/json',
@@ -74,7 +74,6 @@
                 webAPI_getUserInfo(profil.UserId, successCallBack, errorCallBack);
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                console.log("Erreur: " + profil)
                 errorCallBack(jqXHR.status);
                 console.log("webAPI_login - error");
             }
@@ -82,7 +81,7 @@
     }
     function webAPI_getUserInfo(userId, successCallBack, errorCallBack) {
         $.ajax({
-            url: apiBaseURL + "/api/accounts/index" + "/" + userId,
+            url: apiBaseURL + "/api/accounts/" + userId,
             type: 'GET',
             contentType:'text/plain',
             data:{},
@@ -100,7 +99,7 @@
     
     function webAPI_getUsersInfo(successCallBack, errorCallBack) {
         $.ajax({
-            url: apiBaseURL + "/accounts/index",
+            url: apiBaseURL + "/api/accounts",
             type: 'GET',
             contentType:'text/plain',
             data:{},
@@ -115,7 +114,7 @@
     }
     function webAPI_getUserInfoForAvatar(userId, successCallBack, errorCallBack) {
         $.ajax({
-            url: apiBaseURL + "/accounts/index" + "/" + userId,
+            url: apiBaseURL + "/accounts/" + userId,
             type: 'GET',
             contentType:'text/plain',
             data:{},
@@ -149,7 +148,7 @@
     }
     function webAPI_HEAD(successCallBack, errorCallBack) {
         $.ajax({
-            url: apiBaseURL + "/api/news",
+            url: apiBaseURL + "/api/",
             type: 'HEAD',
             contentType:'text/plain',
             complete: function(request) { 
@@ -252,6 +251,7 @@
                 console.log("webAPI_DELETE_Categories - error");
             }
         });
+    }
     //#endregion
 
     //#region Filters
@@ -344,7 +344,7 @@
             success: (data, status, xhr) => { 
                 let ETag = xhr.getResponseHeader("ETag");
                 successCallBack(data, ETag); 
-                console.log("webAPI_GET_All_Ingredients - success", data); 
+                console.log("webAPI_GET_All_Ingredients - success"); 
                 console.log(`ETag: ${ETag}`);
             },
             error: function(jqXHR) {
@@ -493,5 +493,3 @@ function webAPI_DELETE_Recipes(id, successCallBack, errorCallBack) {
     });
 }
 //#endregion
-
-}

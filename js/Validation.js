@@ -1,6 +1,4 @@
 // auteur: Nicolas Chourot
-
-
 //
 // Call back de keypress pour retenir uniquement les caractères alphabétiques
 //
