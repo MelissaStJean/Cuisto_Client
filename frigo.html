@@ -34,21 +34,24 @@
         <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.structure.min.css">
         <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.theme.css">
         <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.theme.min.css">
+
         <!-- Script Javascript-->
         <script src="./js/Validation.js"></script>
         <script src="./js/WebAPIRequest.js"></script>
         
     </head>
     <body style="background-color: whitesmoke;">
-    <div class="h_iframe">
-        <iframe src="header.html" style="height: 270px;"></iframe>
-    </div>
+        <div class="h_iframe">
+            <iframe src="header.html" style="height: 270px;"></iframe>
+        </div>
        <h4>L'outil permettant d'éviter le gaspillage alimentaire. Le but est simple : Sélectionnez les aliments et trouvez une recette.</h4>
+    
+       <!--<div class="fridge_Container">
+            <img src="images/Image_Frigo.png" class="img_Fridge"></img>
+            <button style="position: relative; margin-left: 125px;" type="button" class="button" onclick='changePage("AideMoi")'><strong>Trouve une recette !</strong></button>
+       </div>-->
        <div id="fridge_Fruits" class="fridge_Category">
-            <h3 class="fridge_Title">Fruits & légumes</h3>
-           <!-- <img src="images/Frigo_Fruits.png" style="height:50px; float:left; margin-bottom: 0px;">
-            <button id="glyph" class="gicon glyphicon glyphicon-plus" onClick='addIngredient()'></button>
-            <button id="glyph" class="gicon glyphicon glyphicon-minus" onClick='delete(this)'></button>-->
+            <h3 class="fridge_Title">Fruits & légumes<img src="images/Frigo_Fruits.png" class="img_Category"></h3>
             <div class="itemsContainer">
                 <table class="itemsTable" id="fruits_Container"> 
                 </table>
@@ -56,8 +59,7 @@
         </div>
         
         <div id="fridge_Meat" class="fridge_Category">
-            <h3 class="fridge_Title">Viandes et poissons</h3>
-            <!-- <img src="images/Frigo_Viandes.png" style="height:50px; float:left; margin-bottom: 0px;">-->
+            <h3 class="fridge_Title">Viandes & poissons<img src="images/Frigo_Viandes.png" class="img_Category"></h3>
             <div class="itemsContainer">
                 <table class="itemsTable" id="meats_Container">
                 </table>
@@ -65,8 +67,7 @@
         </div>
 
         <div id="fridge_Milk" class="fridge_Category">
-            <h3 class="fridge_Title">Produits laitiers</h3>
-            <!-- <img src="images/Frigo_Lait.png" style="height:50px; float:left; margin-bottom: 0px;">-->
+            <h3 class="fridge_Title">Produits laitiers<img src="images/Frigo_Lait.png" class="img_Category"></h3>
             <div class="itemsContainer">
                 <table class="itemsTable" id="milks_Container">
                 </table>
@@ -74,129 +75,184 @@
         </div>
 
         <div id="fridge_Others" class="fridge_Category">
-            <h3 class="fridge_Title">Produits dérivés</h3>
-            <!-- <img src="images/Frigo_Produits.png" style="height:50px; float:left; margin-bottom: 0px;">-->
+            <h3 class="fridge_Title">Produits dérivés<img src="images/Frigo_Produits.png" class="img_Category"></h3>
             <div class="itemsContainer">
                 <table class="itemsTable" id="others_Container">
                 </table>
             </div>
         </div>
-        <img onclick='changePage("frigo")' src="images/Image_Frigo.png" style="height:200px;margin-left:12px; float:left; position: absolute;"></img>
-        <button style="position: absolute; margin-top: 250px;" type="button" class="button" onclick='changePage("AideMoi")'><strong>Trouve une recette !</strong></button>
-    <div class="addIngredient">
-        <h3>Ajoute un ingrédient</h3>
-        <input type="text" id="addIngredient" class="form-control" placeholder="Votre Ingredient"  required>
-        <button id="glyph" class="gicon glyphicon glyphicon-remove" onClick='clear()'></button>
-        <br>
-        <label for="quantity"><strong>Quantité</strong></label>
-        <div class="dropdown-content" id="myDropdown">
-            <input class="form-control" type="text" id="quantityIngredient" placeholder="Quantité" required/>
-            <select name="mesure">
-                <option>Unité</option>
-                <option>Mililitre</option>
-                <option>Litre</option>
-                <option>Gramme</option>
+        
+        <div class="addIngredient">
+            <h3>Ajoute un ingrédient</h3>
+            <input type="hidden" id="ingredientId" />
+            <input type="hidden" id="ingredientImageGUID" />
+            <label for="ingredient"><strong>Nom</strong></label>
+            <input type="text" id="ingredientName" placeholder="Ingredient" required>
+            <button type="reset" id="glyph" class="gicon glyphicon glyphicon-remove" onClick='clear()'></button>
+            <br>
+            <label for="quantity"><strong>Quantité</strong></label>
+            <input type="number" id="quantityIngredient" placeholder="Quantité"  required/>
+            <select id="ingredientMeasure" name="mesure" required>
+                <option value="u">Unité</option>
+                <option value="ml">Mililitre</option>
+                <option value="l">Litre</option>
+                <option value="g">Gramme</option>
             </select>
             <br>
             <label for="Catégorie">Catégorie</label>
-            <select id="ingredientCategory" name="Catégorie Ingredient">
+            <select id="ingredientCategory" name="Catégorie Ingredient" required>
                 <option>Fruits et légumes</option>
                 <option>Viandes et poissons</option>
                 <option>Produits laitiers</option>
                 <option>Produits dérivés</option>
             </select>
+            <br>
+            <label for="DatePeremption">Date de péremption</label>
+            <input id="ingredientExpirationDate" type="date">
+            <br>
+            <button onclick="addIngredient()">Ajouter</button>
         </div>
-
-
-        <button id="glyph" class="gicon glyphicon glyphicon-calendar" onClick='addIngredient()'></button>
-    </div>
 </body>
 <script>
-        $(document).ready(initVisual);
+    $(document).ready(initVisual);
 
-function initVisual(){
-    getIngredients();
-}
-
-function addIngredient(){}
-    
-
-function getIngredients(){
-    webAPI_GET_All_Ingredients("",updateIngredientList,AlertError);
-}
-
-function updateIngredientList(ingredients) {
-    console.log(ingredients);
-    $('#fruits_Container').empty();
-    $('#meats_Container').empty();
-    $('#milks_Container').empty();
-    $('#others_Container').empty();
-    //let loggedUserId = (retrieveLoggedUser() ? retrieveLoggedUser().Id : null);
-    //if (loggedUserId) {
-        ingredients.forEach(ingredient => {
-            //if(ingredient.UserId == loggedUserId){
-                switch(ingredient.IngredientCategory){
-                    case "Fruits et légumes":
-                        $('#fruits_Container').append(fridgeItems(ingredient));
-                        break;
-                    case "Viandes et poissons":
-                        $('#meats_Container').append(fridgeItems(ingredient));
-                        break;
-                    case "Produits laitiers":
-                        $('#milks_Container').append(fridgeItems(ingredient));
-                        break;
-                    case "Produits dérivés":
-                        $('#others_Container').append(fridgeItems(ingredient));
-                        break;
-                }
-            //}
-        });
-    //}
-}
-
-function fridgeItems(ingredient) {
-    let trElement = document.createElement("tr");
-    let tdElement = document.createElement("td");
-    trElement.setAttribute("style","width:200px;height:25px");
-    let ingredientName = document.createElement("h4");
-    ingredientName.textContent = ingredient.IngredientName
-    let quantityName = document.createElement("h4");
-    quantityName.textContent = ingredient.IngredientQuantity;
-    let expirationDate = document.createElement("h4");
-    expirationDate.textContent =ingredient.IngredientExpirationDate;
-    tdElement.append(ingredientName);
-    tdElement.append(quantityName);
-    tdElement.append(expirationDate);
-    trElement.append(tdElement);
-    return trElement;
-}
-
-function AlertError(status) {
-    $.confirm({
-        title: "Message provenant du server..." + status,
-        content: '<img src="images/error.png" style="width:60px;margin:10px" alt="httpError"/>' + statusToString(status),
-        buttons: {
-            fermer: function () {
-                this.close();
-                if (status == 401) {
-                    forceLogout();
-                }
-                pauseNewsListPeriodicRefresh = true;
-            }
-        }
-    });
-}
-
-
-function statusToString(status) {
-    let text = "Le serveur ne répond pas.";
-    switch (status) {
-        case 401: text = "<br>Requête non autorisée. <br>Vous devez être connecté."; break;
-        case 409: text = "<br>Conflit de données. <br>Requête refusée."; break;
-        case 422: text = "<br>Format des données soumises incorrect. <br>Requête refusée."; break;
+    function initVisual(){
+        getIngredients();
     }
-    return text;
-}
+
+    function addIngredient(){
+        let ingredient = {
+            IngredientName: $("#ingredientName").val(),
+            IngredientQuantity: parseFloat($("#quantityIngredient").val()),
+            IngredientMeasure: $("#ingredientMeasure").val(),
+            IngredientCategory: $("#ingredientCategory").val(),
+            IngredientExpirationDate: $("#ingredientExpirationDate").val(),
+            IngredientImageGUID: $("#ingredientImageGUID").val(),
+            UserId: retrieveLoggedUser().Id
+        };
+        ingredient.Id = 0;
+        webAPI_POST_Ingredients(ingredient,updateUI,AlertError);
+    }  
+
+    function getIngredients(){
+        webAPI_GET_All_Ingredients("",updateIngredientList,AlertError);
+    }
+
+    function updateIngredientList(ingredients) {
+        console.log(ingredients);
+        $('#fruits_Container').empty();
+        $('#meats_Container').empty();
+        $('#milks_Container').empty();
+        $('#others_Container').empty();
+        let loggedUserId = (retrieveLoggedUser() ? retrieveLoggedUser().Id : null);
+        //if (loggedUserId) {
+            ingredients.forEach(ingredient => {
+                if(ingredient.UserId == loggedUserId){
+                    switch(ingredient.IngredientCategory){
+                        case "Fruits et légumes":
+                            $('#fruits_Container').append(fridgeItems(ingredient));
+                            break;
+                        case "Viandes et poissons":
+                            $('#meats_Container').append(fridgeItems(ingredient));
+                            break;
+                        case "Produits laitiers":
+                            $('#milks_Container').append(fridgeItems(ingredient));
+                            break;
+                        case "Produits dérivés":
+                            $('#others_Container').append(fridgeItems(ingredient));
+                            break;
+                    }
+                }
+            });
+        //}
+    }
+
+    function fridgeItems(ingredient) {
+        let trElement = document.createElement("tr");
+        let tdElement = document.createElement("td");
+        trElement.setAttribute("style","display:table");
+
+        let divIngredient = document.createElement("div");
+        divIngredient.setAttribute("style","display:flex; justify-content: space-between");
+        divIngredient.id = "ingredientId_" + ingredient.Id; 
+        let ingredientName = document.createElement("p");
+        ingredientName.setAttribute("style","width:200px;font-size:large; font-family:Marker Felt, fantasy")
+        ingredientName.textContent = ingredient.IngredientName;
+        let quantityName = document.createElement("p");
+        quantityName.setAttribute("style","font-size:20px; font-family:Marker Felt, fantasy");
+        quantityName.textContent = ingredient.IngredientQuantity + " " + ingredient.IngredientMeasure;
+        let removeIcon = document.createElement("button");
+        removeIcon.className = "gicon glyphicon glyphicon-minus";
+        removeIcon.addEventListener( 'click' , function() {
+            removeQty(ingredient);
+        })
+        //removeIcon.setAttribute("onclick",`(${removeQty(ingredient)})`);
+        removeIcon.id = "glyph";
+        removeIcon.setAttribute("style","scale: 0.6;")
+        let addIcon = document.createElement("button");
+        addIcon.className = "gicon glyphicon glyphicon-plus";
+        addIcon.id = "glyph";
+        addIcon.setAttribute("style","scale: 0.6;")
+        addIcon.addEventListener( 'click' , function() {
+            addQty(ingredient);
+        })
+        //addIcon.setAttribute("onclick",`${addQty(ingredient)}`);
+
+        let expirationDate = document.createElement("p");
+        expirationDate.textContent =ingredient.IngredientExpirationDate;
+        divIngredient.append(ingredientName);
+        divIngredient.append(removeIcon);
+        divIngredient.append(quantityName);
+        divIngredient.append(addIcon);
+        tdElement.append(divIngredient);
+        tdElement.append(expirationDate);
+        trElement.append(tdElement);
+        return trElement;
+    }
+
+    function updateUI() {
+        console.log("Update d'UI")
+        location.reload(true);
+    }
+
+    function addQty(ingredient){
+        ingredient.IngredientQuantity += 1;
+        webAPI_PUT_Ingredients(ingredient,updateUI,AlertError);
+
+    }
+    function removeQty(ingredient){
+        ingredient.IngredientQuantity -= 1;
+        if(ingredient.IngredientQuantity == 0){
+            webAPI_DELETE_Ingredients(ingredient.Id,updateUI,AlertError);
+            return;
+        }
+        webAPI_PUT_Ingredients(ingredient,updateUI,AlertError);
+    }
+
+    function AlertError(status) {
+        $.confirm({
+            title: "Message provenant du server..." + status,
+            content: '<img src="images/error.png" style="width:60px;margin:10px" alt="httpError"/>' + statusToString(status),
+            buttons: {
+                fermer: function () {
+                    this.close();
+                    if (status == 401) {
+                        forceLogout();
+                    }
+                    pauseNewsListPeriodicRefresh = true;
+                }
+            }
+        });
+    }
+    function statusToString(status) {
+        let text = "Le serveur ne répond pas.";
+        switch (status) {
+            case 401: text = "<br>Requête non autorisée. <br>Vous devez être connecté."; break;
+            case 409: text = "<br>Conflit de données. <br>Requête refusée."; break;
+            case 422: text = "<br>Format des données soumises incorrect. <br>Requête refusée."; break;
+        }
+        return text;
+    }
 
 </script>
 </html>

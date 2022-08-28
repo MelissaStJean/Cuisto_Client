@@ -7,29 +7,12 @@ h3{
     text-align: center;
     background-color: var(--col-grey);
     width: fit-content;
-    margin-left: 20%;
+    margin-left: 12%;
 }
 
 h4{
     background-color: var(--col-baby-salmon);
     text-align: center;
-}
-
-.addIngredient{
-    background-color: var(--col-light-grey);
-    width: 20vw;
-    height: 150px;
-    margin-top: 1vh;
-    margin-left: 45%;
-}
-
-.fridge_Category{
-    margin-top: 20px;
-    margin-left: 50px;
-    background-color: var(--col-light-grey);
-    width: 350px;
-    height: 400px;
-    display: inline-block;
 }
 
 .fridge_Title{
@@ -40,16 +23,59 @@ h4{
     text-align: center;
 }
 
+.img_Category{
+    height: 50px;
+    float: right;
+    margin-bottom: 0px;
+}
+
+.fridge_Category{
+    margin-top: 20px;
+    margin-left: 40px;
+    background-color: var(--col-light-grey);
+    width: 420px;
+    height: 400px;
+    display: inline-block;
+}
+
 .itemsContainer{
     position: absolute;
-    background-color: var(--col-baby-salmon);
-    width: 300px; 
-    height: 325px;
+    width: 350px; 
+    height: 320px;
     overflow-y: scroll;
     display: grid;
+    margin-left: 40px;
+}
+
+.itemsContainer::-webkit-scrollbar { 
+    display: none;
 }
 
 .itemsTable{
     height: 500px;
-    background-color: rgb(164, 142, 105);
+    border-collapse: separate;
+    border-spacing: 0 7px;
 }
+
+.fridge_Container{
+    height: 600px; 
+    width: 450px; 
+    position: relative; 
+    display: inherit;
+}
+
+.addIngredient{
+    background-color: var(--col-light-grey);
+    width: 17vw;
+    margin-top: 1vh;
+    margin-left: 45%;
+    padding: 1%;
+    padding-top: 0%;
+}
+
+/*.img_Fridge{
+    height: 500px;
+    margin-left: 12px; 
+    float: left; 
+    position: relative;
+}*/
