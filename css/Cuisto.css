@@ -20,13 +20,13 @@
     margin-left: 1.5vw;
     margin-top: 2vh;
     width: 10vw;
-    height: 60vh;
+    height: 20vh;
     padding: 2px;
-    padding-top: 20px;
     display: inline-block;
     text-align: center;
     font-size: 1.35vw;
     font-family: 'Roboto', Arial, sans-serif;
+    cursor: pointer;
 }
 
 .circle:hover {
@@ -36,7 +36,7 @@
 
 .circle_text {
     display: inline-block;
-    padding-top: 15vh;
+    padding-top: 60px;
 }
 
 .inner-addon {
@@ -57,16 +57,16 @@
 .right-addon .glyphicon { padding-left: 175px;}
 
 .textAccount {
-    font-size: 2em;
-    padding-left: 1vw;
+    background-color: var(--col-light-grey);
+    border: hidden;
+    padding: 5px;
 }
 
 /*La ligne en dessous de account*/
 .dash {
-    border: 1px solid rgb(0, 0, 0);
-    width: 800px;
+    border: 1px solid rgb(51, 51, 51);
+    width: 200px;
     height: 0px;
-    margin-left: 1vw;
 }
 
 /* Fixez le bouton sur le côté gauche de la page */
@@ -144,3 +144,175 @@
     padding: 100px;
 }
 
+.w3-animate-right{
+    position:relative;
+    animation:animateright 0.4s;
+}
+
+@keyframes animateright{
+    from{right:-300px;opacity:0} to{right:0;opacity:1}
+}
+
+.w3-sidebar{
+    height: 90%;
+    width: 200px;
+    background-color: rgb(232, 232, 232);
+    position: absolute!important;
+    z-index: 3;
+    overflow: auto;
+}
+
+.w3-card{
+    box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)
+}
+
+.accountPanel{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 5%;
+    left: 90%;
+    margin: -25px 0 0 -25px;
+}
+
+.form-group input[type=text]{
+    margin-bottom: 18px;
+}
+.form-group input[type=number] {
+    width: 30%;
+    border-radius: 12%;
+    margin: 5px 0 22px 0;
+    margin-bottom: 18px;
+}
+/* Quand les entrées sont concentrées, faites quelque chose */
+.form-group input[type=number]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+/*#region Étoile coupée*/
+
+#half-stars-example{
+  display: inline-block;
+}
+/* use display:inline-flex to prevent whitespace issues. alternatively, you can put all the children of .rating-group on a single line */
+.half-stars-example, .rating-group {
+  display: inline-flex;
+}
+
+/* make hover effect work properly in IE */
+.half-stars-example , .rating__icon {
+  pointer-events: none;
+}
+
+/* hide radio inputs */
+.half-stars-example ,.rating__input {
+  position: absolute !important;
+  left: -9999px !important;
+}
+
+/* set icon padding and size */
+.half-stars-example ,.rating__label {
+  cursor: pointer;
+  /* if you change the left/right padding, update the margin-right property of .rating__label--half as well. */
+  padding: 0 0.1em;
+  font-size: 2rem;
+}
+
+/* add padding and positioning to half star labels */
+.half-stars-example ,.rating__label--half {
+  padding-right: 0;
+  margin-right: -0.7em;
+  z-index: 2;
+}
+
+/* set default star color */
+.half-stars-example ,.rating__icon--star {
+  color: orange;
+}
+
+/* set color of none icon when unchecked */
+.half-stars-example ,.rating__icon--none {
+  color: #eee;
+}
+
+/* if any input is checked, make its following siblings grey */
+.half-stars-example ,.rating__input:checked ~ .rating__label .rating__icon--star {
+  color: #ddd;
+}
+
+/* make all stars orange on rating group hover */
+.half-stars-example , .rating-group:hover .rating__label .rating__icon--star,
+.half-stars-example , .rating-group:hover .rating__label--half .rating__icon--star {
+  color: orange;
+}
+
+/* make hovered input's following siblings grey on hover */
+.half-stars-example , .rating__input:hover ~ .rating__label .rating__icon--star,
+.half-stars-example , .rating__input:hover ~ .rating__label--half .rating__icon--star {
+  color: #ddd;
+}
+
+/* make none icon grey on rating group hover */
+.half-stars-example , .rating-group:hover .rating__input--none:not(:hover) + .rating__label .rating__icon--none {
+  color: #eee;
+}
+/*#endregion Étoile coupée*/
+
+/*#region Étoile pleine*/
+
+
+#full-stars-example-two{
+  display: inline-block;
+}
+/* use display:inline-flex to prevent whitespace issues. alternatively, you can put all the children of .rating-group on a single line */
+.full-stars-example-two , .rating-group {
+  display: inline-flex;
+}
+
+/* make hover effect work properly in IE */
+.full-stars-example-two , .rating__icon {
+  pointer-events: none;
+}
+
+/* hide radio inputs */
+.full-stars-example-two , .rating__input {
+  position: absolute !important;
+  left: -9999px !important;
+}
+
+/* hide 'none' input from screenreaders */
+.full-stars-example-two , .rating__input--none {
+  display: none
+}
+
+/* set icon padding and size */
+.full-stars-example-two , .rating__label {
+  cursor: pointer;
+  padding: 0 0.1em;
+  font-size: 2rem;
+}
+
+/* set default star color */
+.full-stars-example-two , .rating__icon--star {
+  color: orange;
+}
+
+/* if any input is checked, make its following siblings grey */
+.full-stars-example-two , .rating__input:checked ~ .rating__label .rating__icon--star {
+  color: #ddd;
+}
+
+/* make all stars orange on rating group hover */
+.full-stars-example-two , .rating-group:hover .rating__label .rating__icon--star {
+  color: orange;
+}
+
+/* make hovered input's following siblings grey on hover */
+.full-stars-example-two , .rating__input:hover ~ .rating__label .rating__icon--star {
+  color: #ddd;
+}
+/*#endregion Étoile pleine*/
+
+#difficultyId, #noteId {
+  width: 100px;
+}

@@ -9,108 +9,137 @@
     <!---STYLES BUNDLE -------------------------------------------------------------------------->
     <link rel="stylesheet" href="css/Cuisto.css">
     <link rel="stylesheet" href="css/AideMoi.css">
-
     <!-- Use bootstrap icon -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Confirm dialog styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
     <!-- Font awesome styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Script Javascript-->
+    <script src="./js/Validation.js"></script>
+    <script src="./js/WebAPIRequest.js"></script>
+    <script src="./js/accountHelper.js"></script>
+    <script src="./js/fridgeHelper.js"></script>
+    <script src="./js/recipeHelper.js"></script>
+    <!-- Script Jquery -->
+    <script src="./js/jquery-3.3.1.js"></script>
+    <script src="./js/jquery-ui.js"></script>
+    <script src="./js/jquery-confirm.js"></script>
+    <script src="./js/jquery.maskedinput.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <!-- Script Jquery CSS-->
+    <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.css">
+    <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.structure.css">
+    <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.theme.css">
+    <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.theme.min.css">
 
     <link rel="icon" href="favicon.ico">
 </head>
 <body style="background-color: whitesmoke;">  
-    <div class="h_iframe">
-        <iframe src="header.html" style="height: 270px;"></iframe>
+    <div class="w3-sidebar w3-bar-block w3-card w3-animate-right accountPanel" style="display:none;" id="rightMenu">
+        <button id="glyph" style="float: right;" onclick="closeRightMenu()">&times;</button>
+        <div style="margin-left:10px; text-align:left;">
+            <div id="avatarContainer"></div>
+            <h4 id="username">Non connecté</h4>
+        </div>
+        <div class="dash"></div>
+        <div id="contentAccount" class="open-btn" style="margin-top: 8px;">
+            <button class="glyphicon glyphicon-log-in" id="btn_OpenLoginForm" style="height:fit-content; padding: 8px; margin-left:8px;margin-right: 5px;"></button>
+            <p style="margin-top: 5px;">ou</p>
+            <button class="glyphicon glyphicon-edit" id="btn_OpenRegisterForm" style="height:fit-content; padding: 8px; margin-left: 5px;" ></button>
+            <button class="glyphicon glyphicon-log-out" style="display:none;" id="btn_Logout" tooltip="Déconnexion" tooltip-position="bottom"></button>
+        </div> 
+        <h4 style="margin-left:8px;">Administration</h4>
+        <button class="gicon glyphicon glyphicon-plus" id="btn_OpenAddRecipeForm" style="height:fit-content; margin-left:8px;"></button>
     </div>
+    <img onclick='changePage("main")' src="images/Logo.png" style="height:180px;  position:left; margin-bottom: 0px; cursor: pointer;">
+    <div id="circleGenerator" style="display:inline;">
+    </div>
+    <button id="accountButton" class="textAccount" onclick="openRightMenu()">Mon compte</button>
+    
+    <div id="bar" style="background-color: whitesmoke; height: 50px; margin-top: 30px; display: block; position: relative; ">
+        <button id="glyph" class="gicon glyphicon glyphicon-filter" onClick='showCategory()' style="margin-left: 30px;"></button>
+        <div class="inner-addon right-addon" style="margin-right: 15px;">
+            <i class="glyphicon glyphicon-search"></i>
+            <input style="width: 200px;" maxlength="20" type="text" class="form-control" placeholder="Rechercher" />
+        </div>
+    </div>
+    
     <div id="panel">
         <quote>L'outil qui répond à la fameuse question "On mange quoi?</quote>
         <img src="images/Aide_Moi.png" style="height:200px;margin-left:12px; margin-right:10px;float:left;"></img>
         <p>Choisissez le type de recette</p>
-        <div>
-            <input type="radio" name="typeRecipe" id="breakfast">
-            <label class="for-checkbox-budget" for="breakfast">
-                <span data-hover="Déjeuners">Déjeuners</span>
-            </label>
-            <input type="radio" name="typeRecipe" id="entries">
-            <label class="for-checkbox-budget" for="entries">
-                <span data-hover="Entrées">Entrées</span>
-            </label>
-            <input type="radio" name="typeRecipe" id="mainCourse">
-            <label class="for-checkbox-budget" for="mainCourse">	
-                <span data-hover="Plats principaux">Plats principaux</span>	
-            </label>
-            <input type="radio" name="typeRecipe" id="desserts">
-            <label class="for-checkbox-budget" for="desserts">	
-                <span data-hover="Desserts">Desserts</span>	
-            </label>
-            <input type="radio" name="typeRecipe" id="beverage">
-            <label class="for-checkbox-budget" for="beverage">	
-                <span data-hover="Breuvages">Breuvages</span>	
-            </label>
-            <input type="radio" name="typeRecipe" id="snacks">
-            <label class="for-checkbox-budget" for="snacks">	
-                <span data-hover="Collations">Collations</span>	
-            </label>
-        </div>  
+        <div id="typeCategory">
+        </div>
         <p>Choisissez des filtres</p>
-        <table>
-            <td>
-                <div style="width: 200px;">
-                    <input type="checkbox" id="healthy" name="healthy" value="healthy">
-                    <label for="healthy"> Santé</label><br>
-                    <input type="checkbox" id="5ingredients" name="5ingredients" value="5ingredients">
-                    <label for="5ingredients"> 5 ingrédients</label><br>
-                    <input type="checkbox" id="30minutes" name="30minutes" value="30minutes">
-                    <label for="30minutes"> - 30 min</label><br>
-                    <input type="checkbox" id="noHeat" name="noHeat" value="noHeat">
-                    <label for="noHeat"> Sans cuisson</label><br>
-                    <br>
-                </div> 
-            </td>
-            <td>
-                <div style="width: 200px;">
-                    <input type="checkbox" id="sauces" name="sauces" value="sauces">
-                    <label for="sauces"> Sauces</label><br>
-                    <input type="checkbox" id="pasta" name="pasta" value="pasta">
-                    <label for="pasta"> Pâtes</label><br>
-                    <input type="checkbox" id="meat" name="meat" value="meat">
-                    <label for="meat"> Viandes</label><br>
-                    <input type="checkbox" id="fish" name="fish" value="fish">
-                    <label for="fish"> Poissons</label><br>
-                    <br>
-                </div> 
-            </td>
-            <td>
-                <div style="width: 200px;">
-                    <input type="checkbox" id="cakes" name="cakes" value="cakes">
-                    <label for="cakes"> Gâteaux</label><br>
-                    <input type="checkbox" id="blender" name="blender" value="blender">
-                    <label for="blender"> Au mélangeur</label><br>
-                    <input type="checkbox" id="Bbq" name="Bbq" value="Bbq">
-                    <label for="Bbq"> Au Bbq</label><br>
-                    <input type="checkbox" id="jar" name="jar" value="jar">
-                    <label for="jar"> Pot masson</label><br>
-                    <br>
-                </div> 
-            </td>
-            <td>
-                <div style="width: 200px;">
-                    <input type="checkbox" id="internationalRecipe" name="internationalRecipe" value="internationalRecipe">
-                    <label for="internationalRecipe"> Recette étrangère</label><br>
-                    <input type="checkbox" id="canFreeze" name="canFreeze" value="canFreeze">
-                    <label for="canFreeze"> À congeler</label>
-                    <br>
-                </div> 
-            </td>
-        </table>
+        <div id="filter">
+            
+        </div>
         <button type="button" class="button" onclick='searchRecipe()' style="margin-left: 30%"><strong>Trouve une recette</strong></button>
     </div>			
 </body>
 <script>
 
-    function changePage(name){
-        document.location.href = name + ".html";
+    $(document).ready(initVisual)
+
+    function initVisual(){
+        getFilters();
+        getCategoriesCircle();
+        initLogin();
+        $("#btn_OpenLoginForm").click(OpenLoginForm);
+        initRegister();
+        $("#btn_OpenRegisterForm").click(OpenRegisterForm);
+        $("#btn_OpenAddRecipeForm").click(OpenAddRecipeForm);
+        initRecipe();
+        getCategoriesButton();
+        updateConnected();
+        $("#btn_Logout").click(OpenConfirmLogout);
     }
+
+    function getCategoriesButton(){
+        webAPI_GET_All_Categories("",typeRecipe,AlertError);
+    }
+    function typeRecipe(categories){
+        categories.forEach(category => {
+            let inputCategory = document.createElement("input");
+            let id = "category_" + category.Id;
+            inputCategory.id = id;
+            inputCategory.type = "radio";
+            inputCategory.name = "typeRecipe";
+            let labelCategory = document.createElement("label");
+            labelCategory.className = "for-checkbox-budget";
+            labelCategory.htmlFor = id;
+            let spanCategory = document.createElement("span");
+            spanCategory.setAttribute("data-hover",id);
+            spanCategory.textContent = category.CategoryName;
+
+            labelCategory.append(spanCategory);
+            $("#typeCategory").append(inputCategory);
+            $("#typeCategory").append(labelCategory);
+        });
+    }
+
+    function getFilters(){
+        webAPI_GET_All_Filters("",typeFilters,AlertError)
+    }
+    function typeFilters(filters){
+        filters.forEach(filter => {
+            let inputFilter = document.createElement("input");
+            inputFilter.type = "checkbox";
+            inputFilter.id = filter.FilterTag;
+            inputFilter.value = filter.FilterTag;
+
+            let labelFilter = document.createElement("label");
+            labelFilter.htmlFor = filter.FilterTag;
+            labelFilter.textContent = filter.FilterName;
+            
+            $("#filter").append(inputFilter);
+            $("#filter").append(labelFilter);
+        });
+    }
+
 </script>
 </html>

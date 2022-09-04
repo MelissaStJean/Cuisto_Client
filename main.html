@@ -1,375 +1,220 @@
 <!DOCTYPE html>
 <html lang="fr-FR">
-    <head>
-        <meta charset="UTF-8">
-        <meta author="Mélissa St-Jean & Alexandre Tardif">
-        <meta http-equiv="Content-Type" content="text/html; charset= ISO-8859-1">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="UTF-8">
+    <meta author="Mélissa St-Jean & Alexandre Tardif">
+    <meta http-equiv="Content-Type" content="text/html; charset= ISO-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chez Mel</title>
 
-        <title>Chez Mel</title>
-
-        <!---STYLES BUNDLE -------------------------------------------------------------------------->
-        <link rel="stylesheet" href="css/Cuisto.css">
-        <!-- Google Styles-->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!-- Use bootstrap icon -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <!-- Confirm dialog styles -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-        <!-- Font awesome styles -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        
-        <!-- Script Javascript-->
-        <script src="./js/WebAPIRequest.js"></script>
-        <script src="./js/Validation.js"></script>
-        <!-- Script Jquery -->
-        <script src="./js/jquery-3.3.1.js"></script>
-        <script src="./js/bootstrap.js"></script>
-        <script src="./js/jquery-ui.js"></script>
-        <script src="./js/jquery-ui.min.js"></script>
-        <script src="./js/jquery-confirm.js"></script>
-        <script src="./js/jquery.maskedinput.js"></script>
-
-        <!-- Script Jquery CSS-->
-        <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.css">
-        <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.min.css">
-        <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.structure.css">
-        <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.structure.min.css">
-        <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.theme.css">
-        <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.theme.min.css">
-        
-
-        <link rel="icon" href="favicon.ico">
-    </head>
-    <body style="background-color: whitesmoke;">
-
-        <div class="h_iframe">
-            <iframe src="header.html" style="height: 270px;"></iframe>
-        </div>
-
-        <text class="textAccount">Mon compte</text>
-        <div style="margin-left:10px;text-align:left;">
+    <!---STYLES BUNDLE -------------------------------------------------------------------------->
+    <link rel="stylesheet" href="css/Cuisto.css">
+    <!-- Google Styles-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Use bootstrap icon -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Confirm dialog styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <!-- Font awesome styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Script Javascript-->
+    <script src="./js/WebAPIRequest.js"></script>
+    <script src="./js/Validation.js"></script>
+    <script src="./js/accountHelper.js"></script>
+    <script src="./js/RecipeHelper.js"></script>
+    <!-- Script Jquery -->
+    <script src="./js/jquery-3.3.1.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/jquery-ui.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
+    <script src="./js/jquery-confirm.js"></script>
+    <script src="./js/jquery.maskedinput.js"></script>
+    <!-- Script Jquery CSS-->
+    <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.css">
+    <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.structure.css">
+    <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.theme.css">
+    <link rel="stylesheet" href="../Cuisto_Client/css/jquery-ui.theme.min.css">
+    
+    <link rel="icon" href="favicon.ico">
+</head>
+<body style="background-color: whitesmoke;">
+    <div class="w3-sidebar w3-bar-block w3-card w3-animate-right accountPanel" style="display:none;" id="rightMenu">
+        <button id="glyph" style="float: right;" onclick="closeRightMenu()">&times;</button>
+        <div style="margin-left:10px; text-align:left;">
             <div id="avatarContainer"></div>
             <h4 id="username">Non connecté</h4>
         </div>
         <div class="dash"></div>
-        <div id="contentAccount" class="open-btn">
-            <button class="button" id="btn_OpenLoginForm">
-            <strong>Se connecter</strong></button> <h3>ou</h3>
-            <button class="button" id="btn_OpenRegisterForm"><strong>S'inscrire</strong></button>
-            <div id="btn_Logout" tooltip="Déconnexion" tooltip-position="bottom">
-                <p>Se déconnecter?</p>
+        <div id="contentAccount" class="open-btn" style="margin-top: 8px;">
+            <button class="glyphicon glyphicon-log-in" id="btn_OpenLoginForm" style="height:fit-content; padding: 8px; margin-left:8px;margin-right: 5px;"></button>
+            <p style="margin-top: 5px;">ou</p>
+            <button class="glyphicon glyphicon-edit" id="btn_OpenRegisterForm" style="height:fit-content; padding: 8px; margin-left: 5px;" ></button>
+            <button class="glyphicon glyphicon-log-out" style="display:none;" id="btn_Logout" tooltip="Déconnexion" tooltip-position="bottom"></button>
+        </div> 
+        <h4 style="margin-left:8px;">Administration</h4>
+        <button class="gicon glyphicon glyphicon-plus" id="btn_OpenAddRecipeForm" style="height:fit-content; margin-left:8px;"></button>
+    </div>
+    <img onclick='changePage("main")' src="images/Logo.png" style="height:180px;  position:left; margin-bottom: 0px; cursor: pointer;">
+    <div id="circleGenerator" style="display:inline;">
+    </div>
+    <button id="accountButton" class="textAccount" onclick="openRightMenu()">Mon compte</button>
+    
+    <div id="bar" style="background-color: whitesmoke; height: 50px; margin-top: 30px; display: block; position: relative; ">
+        <button id="glyph" class="gicon glyphicon glyphicon-filter" onClick='showCategory()' style="margin-left: 30px;"></button>
+        <div class="inner-addon right-addon" style="margin-right: 15px;">
+            <i class="glyphicon glyphicon-search"></i>
+            <input style="width: 200px;" maxlength="20" type="text" class="form-control" placeholder="Rechercher" />
+        </div>
+    </div>
+    <div style="display: inline-block;">
+        <table>
+            <td>
+                <div id="btn_Frigo" style="width: 200px;">
+                    <img onclick='changePage("frigo")' src="images/Image_Frigo.png" style="height:200px;margin-left:12px; margin-right:5px;float:left; cursor: pointer;"></img>
+                    <br>
+                </div> 
+            </td>
+            <td>
+                <div id="btn_Aide" style="width: 200px;">
+                    <img onclick='changePage("aideMoi")' src="images/Aide_Moi.png" style="height:200px;margin-left:12px; margin-right:5px;float:left; cursor: pointer;"></img>
+                </div>
+            </td>
+        </table>
+    </div>
+
+    <!--Pop-up connexion usager-->    
+    <div id="dialog-loginForm" class="dialog" title="Connexion">
+        <form id="loginForm" class="form-group">
+            <p id="confirmCreation" style="color : green">Création de compte réussi</p>
+            <label for="email"><strong>Email : </strong></label>
+            <input type="text" id="loginEmail" placeholder="Courriel" class="form-control" required/>
+            <br>
+            <label for="psw"><strong>Mot de passe :</strong></label>
+            <input type="password" id="loginPsw" placeholder="Mot de passe" class="form-control" required/>
+            <br>
+            <div class="form-group form-check">
+                <label class="form-check-label" form="remember-me">Se souvenir de moi</label>
+                <input type="checkbox" class="form-check-input" id="remember-me">
             </div>
-        </div>
-        <text class="textAccount">Mes outils</text>
-        <div class="dash"></div>
-        <br>
-        <br>
-        <div style="display: inline-block;">
-            <table>
-                <td>
-                    <div id="btn_Frigo" style="width: 400px;">
-                        <text class="textAccount" id="btnFrigo">Mon frigo</text>
-                        <br><br>
-                        <img onclick='changePage("frigo")' src="images/Image_Frigo.png" style="height:200px;margin-left:12px; margin-right:5px;float:left;"></img>
-                        <br>
-                    </div> 
-                </td>
-                <td>
-                    <div id="btn_Aide" style="width: 400px;">
-                        <text class="textAccount">Aide-moi</text>
-                        <br><br>
-                        <img onclick='changePage("aideMoi")' src="images/Aide_Moi.png" style="height:200px;margin-left:12px; margin-right:5px;float:left;"></img>
-                    </div>
-                </td>
-            </table>
-        </div>
+        </form>
+    </div>
 
-        <!--Pop-up connexion usager-->    
-        <div id="dialog-loginForm" class="dialog" title="Connexion">
-            <form id="loginForm" class="form-group">
-                <p id="confirmCreation" style="color : green">Création de compte réussi</p>
-                <label for="email"><strong>Email : </strong></label>
-                <input type="text" id="loginEmail" placeholder="Courriel" class="form-control" required/>
-                <br>
-                <label for="psw"><strong>Mot de passe :</strong></label>
-                <input type="password" id="loginPsw" placeholder="Mot de passe" class="form-control" required/>
-                <br>
-                <div class="form-group form-check">
-                    <label class="form-check-label" form="remember-me">Se souvenir de moi</label>
-                    <input type="checkbox" class="form-check-input" id="remember-me">
+    <!--Pop-up création compte-->
+    <div id="dialog-registerForm" class="dialog" title="Créer un compte">
+        <form id="registerForm" class="form-group">
+            <input type="hidden" id="avatarGUID" />
+            <input type="hidden" id="createProfilId" />
+            <label for="name"><strong>Nom</strong></label>
+            <input type="text" id="createUsername" placeholder="Votre nom" class="form-control"  required>
+            <br>
+            <label for="email"><strong>E-mail</strong></label>
+            <input type="text" id="createEmail" placeholder="Votre email" class="form-control" required>
+            <br>
+            <label for="psw"><strong>Mot de passe</strong></label>
+            <input type="password" id="createPassword" placeholder="Votre mot de passe" class="form-control" required>
+            <br>
+            <div style="vertical-align:top; ">
+                <button id="avatarImage" style="border: hidden; box-shadow: none;" onclick="importData()"><img id='avatar' src='images/No_Avatar.png'></img></button>
+                <label>(cliquez pour changer l'avatar)</label>
+            </div>
+        </form>
+    </div>
+
+    <div id="dialog-addRecipeForm" class="dialog" title="Ajout d'une recette !">
+        <form id="addRecipeForm" class="form-group">
+            <label for="nameRecipe"><strong>Nom de la recette</strong></label>
+            <input type="text" id="nameRecipe" class="form-control" required>
+
+            <label for="Catégorie Recette">Catégorie</label>
+            <select id="recipeCategory" name="Catégorie Recette" required>
+                <option>Fruits et légumes</option>
+                <option>Viandes et poissons</option>
+            </select>
+
+            <label for="portionNumber"><strong>Nombre de portions</strong></label>
+            <input type="number" id="portionNumber" onKeyDown="if(this.value.length==3 && event.keyCode!=8) return false;" style="width: 50px;" required>
+            <br>
+            <label for="difficulty" id="difficultyId"><strong>Difficulté</strong></label>
+            <div id="half-stars-example">
+                <div class="rating-group">
+                    <input class="rating__input rating__input--none" checked name="rating2" id="rating2-0" value="0" type="radio">
+                    <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                    <input onclick="" class="rating__input" name="rating2" id="rating2-05" value="0.5" type="radio">
+                    <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                    <input onclick="" class="rating__input" name="rating2" id="rating2-10" value="1" type="radio">
+                    <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                    <input onclick="" class="rating__input" name="rating2" id="rating2-15" value="1.5" type="radio">
+                    <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                    <input onclick="" class="rating__input" name="rating2" id="rating2-20" value="2" type="radio">
+                    <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                    <input onclick="" class="rating__input" name="rating2" id="rating2-25" value="2.5" type="radio">
+                    <label aria-label="3 stars" class="rating__label" for="rating2-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                    <input onclick="" class="rating__input" name="rating2" id="rating2-30" value="3" type="radio">
                 </div>
-            </form>
-        </div>
-
-        <!--Pop-up création compte-->
-        <div id="dialog-registerForm" class="dialog" title="Créer un compte">
-            <form id="registerForm" class="form-group">
-                <input type="hidden" id="avatarGUID" />
-                <input type="hidden" id="createProfilId" />
-                <label for="name"><strong>Nom</strong></label>
-                <input type="text" id="createUsername" placeholder="Votre nom" class="form-control"  required>
-                <br>
-                <label for="email"><strong>E-mail</strong></label>
-                <input type="text" id="createEmail" placeholder="Votre email" class="form-control" required>
-                <br>
-                <label for="psw"><strong>Mot de passe</strong></label>
-                <input type="password" id="createPassword" placeholder="Votre mot de passe" class="form-control" required>
-                <br>
-                <div style="vertical-align:top; ">
-                    <button id="avatarImage" style="border: hidden; box-shadow: none;" onclick="importData()"><img id='avatar' src='images/No_Avatar.png'></img></button>
-                    <label>(cliquez pour changer l'avatar)</label>
+            </div>
+            <br>
+            <label for="rating" id="noteId"><strong>Note</strong></label>
+            <div id="full-stars-example-two">
+                <div class="rating-group">
+                    <input disabled checked class="rating__input rating__input--none" name="rating3" id="rating3-none" value="0" type="radio">
+                    <label aria-label="1 star" class="rating__label" for="rating3-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                    <input class="rating__input" name="rating3" id="rating3-1" value="1" type="radio">
+                    <label aria-label="2 stars" class="rating__label" for="rating3-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                    <input class="rating__input" name="rating3" id="rating3-2" value="2" type="radio">
+                    <label aria-label="3 stars" class="rating__label" for="rating3-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                    <input class="rating__input" name="rating3" id="rating3-3" value="3" type="radio">
                 </div>
-            </form>
-        </div>
-    </body>
-    <script>
-        $(document).ready(initVisual);
-        
-        let profilValidationProvider = null;
+            </div>
+            <br>
+            <label for="ingredients"><strong>Ingrédients</strong></label>
+            <input type="text" id="ingredients" class="form-control" required>
+            <label for="steps"><strong>Directives</strong></label>
 
-        function initVisual(){
-            initLogin();
-            $("#btn_OpenLoginForm").click(OpenLoginForm);
-            initRegister();
-            $("#btn_OpenRegisterForm").click(OpenRegisterForm);
-            $("#btn_Logout").hide();
-            $("#confirmCreation").hide();
-            //$("#btn_Frigo").hide();
-            //$("#btn_Aide").hide();
-            $("#btn_Logout").click(OpenConfirmLogout);
-        }
+            <input type="text" id="steps" class="form-control" required>
 
-        function openForm(id) {
-            document.getElementById(id).style.display="block";
-        }
-      
-        function closeForm(id) {
-            document.getElementById(id).style.display="none";
-        }
+            <label for="preparationTime"><strong>Préparation</strong></label>
+            <input type="number" id="preparationTime" onKeyDown="if(this.value.length==3 && event.keyCode!=8) return false;" style="width: 50px;" required>
+            <br>
+            <label for="cookingTime"><strong>Cuisson</strong></label>
+            <input type="number" id="cookingTime" onKeyDown="if(this.value.length==3 && event.keyCode!=8) return false;" style="width: 50px;"  required>
+            <label for="temperature"><strong>Température</strong></label>
+            <input type="number" id="temperature" onKeyDown="if(this.value.length==3 && event.keyCode!=8) return false;" style="width: 50px;"  required>
+            <br>
+            <label for="advice"><strong>Astuces</strong></label>
+            <input type="text" id="advice" class="form-control"  required>
+            <label for="alternatives"><strong>Alternatives</strong></label>
+            <input type="text" id="alternatives" class="form-control"  required>
+        </form>
+    </div>
+</body>
+<script>
+    $(document).ready(initVisual);
+    
+    let profilValidationProvider = null;
 
-        function changePage(name){
-            document.location.href = name + ".html";
-        }
+    function initVisual(){
+        getCategoriesCircle();
+        initLogin();
+        $("#btn_OpenLoginForm").click(OpenLoginForm);
+        initRegister();
+        $("#btn_OpenRegisterForm").click(OpenRegisterForm);
+        $("#btn_OpenAddRecipeForm").click(OpenAddRecipeForm);
+        initRecipe();
+        //$("#btn_Logout").hide();
+        $("#confirmCreation").hide();
+        //$("#btn_Frigo").hide();
+        //$("#btn_Aide").hide();
+        $("#btn_Logout").click(OpenConfirmLogout);
+    }
 
-        function Login(){
-            webAPI_login($("#loginEmail").val(),$("#loginPsw").val(),updateUI(),failLogin());
-        }
-
-        function initLogin(){
-            $("#dialog-loginForm").dialog(
-                {
-                    autoOpen: false,
-                    show: { effect: 'fade', speed: 400 },
-                    hide: { effect: 'fade', speed: 400 },
-                    minheight: "auto",
-                    minwidth: "auto",
-                    buttons: [
-                        {
-                            id: 'btn-OkLogin',
-                            text: 'Connecte-moi',
-                            click: function () {
-                                webAPI_login($("#loginEmail").val(),
-                                    $("#loginPsw").val(),
-                                    () => {
-                                        $("#dialog-loginForm").dialog("close");
-                                        updateUI();
-                                    },
-                                    failLogin);
-                            }
-                        }
-                    ]
-                });
-                
-            $('#dialog-loginForm').on('dialogopen', function (event) {
-                if (localStorage.getItem('rememberme') == "1") {
-                    $("#remember-me").attr("checked", "checked");
-                    let email = localStorage.getItem('loginEmail');
-                    let password = localStorage.getItem('loginPsw');
-                    if (email) $("#loginEmail").val(email);
-                    if (password) $("#loginPsw").val(password);
-                } else {
-                    $("#loginEmail").val("");
-                    $("#loginPsw").val("");
-                }
-            });
-            
-            $('#dialog-loginForm').on('dialogclose', function (event) {
-                if ($('#remember-me').is(":checked")) {
-                    localStorage.setItem('rememberme', "1");
-                    localStorage.setItem('loginEmail', $("#loginEmail").val());
-                    localStorage.setItem('loginPsw', $("#loginPsw").val());
-                } else {
-                    localStorage.setItem('rememberme', "0");
-                    localStorage.removeItem('loginEmail');
-                    localStorage.removeItem('loginPsw');
-                }
-            });
-        }
-
-        function FindUsers(){
-            webAPI_getUsersInfo(getUsers,AlertError);
-        }
-
-        function getUsers(users){
-            users.sort(function(a, b){
-            if(a.Name < b.Name) { return -1; }
-            if(a.Name > b.Name) { return 1; }
-            return 0;
-            })
-        }
-
-        function AlertError(status) {
-            $.confirm({
-                title: "Message provenant du server..." + status,
-                content: '<img src="images/error.png" style="width:60px;margin:10px" alt="httpError"/>' + statusToString(status),
-                buttons: {
-                    fermer: function () {
-                        this.close();
-                        if (status == 401) {
-                            forceLogout();
-                        }
-                    }
-                }
-            });
-        }
-
-        function updateConnected() {
-            connected = false;
-            let username = "";
-            if (retrieveLoggedUser() != null) {
-                username = retrieveLoggedUser().Name;
-                connected = true;
-            }
-            if (connected) {
-                setUsername(username);
-                //$("#avatarContainer").empty();
-                //$("#avatarContainer").append(html_fittedAvatar(retrieveLoggedUser().AvatarURL, 'avatar'));
-                $("#btn_Logout").show();
-                $("#btn_OpenLoginForm").hide();
-                $("#btn_OpenRegisterForm").hide()
-                //$("#btn_Frigo").show();
-                //$("#btn_Aide").show();
-                $('#btn_OpenProfilDialog').attr("tooltip", "Profil");
-            }
-            else {
-                //$("#avatarContainer").empty();
-                //$("#btn_OpenConfirmLogout").hide();
-                unsetUsername();
-                $("#btn_Logout").hide();
-                $("#btn_OpenLoginForm").show();
-                $("#btn_OpenRegisterForm").show()
-                //$("#btn_Frigo").hide();
-                //$("#btn_Aide").hide();
-                $('#btn_OpenProfilDialog').attr("tooltip", "Création de compte");
-            }
-        }
-
-        function statusToString(status) {
-            let text = "Le server ne répond pas.";
-            switch (status) {
-                case 401: text = "<br>Requête non autorisée. <br>Vous devez être connecté."; break;
-                case 409: text = "<br>Conflit de données. <br>Requête refusée."; break;
-                case 422: text = "<br>Format des données soumises incorrect. <br>Requête refusée."; break;
-            }
-            return text;
-        }
-
-        function initRegister(){
-            $("#dialog-registerForm").dialog(
-                {
-                    autoOpen: false,
-                    show: { effect: 'fade', speed: 400 },
-                    hide: { effect: 'fade', speed: 400 },
-                    minheight: "auto",
-                    minwidth: "auto",
-                    buttons: [
-                        {
-                            id: 'btn-OkRegister',
-                            text: 'Inscris-moi',
-                            click: function () {
-                                let profilFromForm = {
-                                    Id: parseInt($("#createProfilId").val()),
-                                    Name: $("#createUsername").val(),
-                                    Email: $("#createEmail").val(),
-                                    Password: $("#createPassword").val(),
-                                    AvatarGUID: $("#avatarGUID").val()
-                                }
-                                profilFromForm.Id = 0;
-                                webAPI_Register(profilFromForm,() => { $("#dialog-registerForm").dialog("close"); $("#dialog-loginForm").dialog("open"); $("#confirmCreation").show();}, updateUI,AlertError);
-                                
-                            }
-                        }
-                    ]
-                });
-        }
-
-        function OpenConfirmLogout() {
-            $.confirm({
-                title: 'Déconnection...',
-                content: 'Voulez-vous vous déconnecter?',
-                buttons: {
-                    confirmer: function () {
-                        pauseNewsListPeriodicRefresh = false;
-                        webAPI_logout(retrieveLoggedUser().Id, updateUI, AlertError);
-                    },
-                    annuler: {},
-                }
-            });
-        }
-        
-        function failLogin() {
-            console.log("Login failed")
-            Alert("Connexion échouée");
-            connected = false;
-            unsetUsername();
-            updateUI();
-        }
-
-        function Alert(message) {
-            $.confirm({
-                title: message,
-                content: '',
-                buttons: {
-                    fermer: function () { }
-                }
-            });
-        }
-
-        function OpenLoginForm() {
-            $('#btn-CancelLogin').addClass("btn btn-dark");
-            $("#dialog-loginForm").dialog('open');
-            $('#btn-OkLogin').addClass("btn btn-secondary");
-        } 
-
-        function OpenRegisterForm() {
-            $('#btn-CancelRegister').addClass("btn btn-secondary");
-            $("#dialog-registerForm").dialog('open');
-            $('#btn-OkRegister').addClass("btn btn-secondary");
-        }
-        
-        function setUsername(username) {
-            $("#username").html("<span style='color:black;'>" + username + "</span>");
-        }
-
-        function unsetUsername() {
-            $("#username").html("<span style='color:black'>non connecté</span>");
-        }
-
-        function updateUI() {
-            console.log("Update d'UI")
-            updateConnected();
-        }
-
-        function importData() {
-            let input = document.createElement('input');
-            input.type = 'file';
-            input.onchange = _ => {
-                let files =   Array.from(input.files);
-                console.log(files);
-                //document.getElementById("#avatarImage").src="newSource.png";
-            };
-            input.click();
-        }
-    </script>
+    function openForm(id) {
+        document.getElementById(id).style.display="block";
+    }
+    
+    function closeForm(id) {
+        document.getElementById(id).style.display="none";
+    }
+</script>
 </html>
